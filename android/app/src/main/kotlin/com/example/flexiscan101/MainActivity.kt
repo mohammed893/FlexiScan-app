@@ -1,0 +1,5 @@
+package com.example.flexiscan101
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity()
