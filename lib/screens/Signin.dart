@@ -1,3 +1,4 @@
+import 'package:flexiscan101/main.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
@@ -7,6 +8,10 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
+      floatingActionButton: FloatingActionButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context){
+          return const MyHomePage(title: 'Home Page');
+      }));
+      }),
     );
   }
 }
