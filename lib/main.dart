@@ -1,5 +1,6 @@
 import 'package:flexiscan101/detailPage.dart';
 import 'package:flexiscan101/ex1.dart';
+import 'package:flexiscan101/screens/Signin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
@@ -24,7 +25,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const Login(),
     );
   }
 }
