@@ -37,6 +37,9 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_bluetooth_serial: any
   font_awesome_flutter: ^10.4.0
+  bloc: ^8.1.4
+  flutter_bloc: ^8.1.6
+  dio: ^5.7.0
 
 
 dev_dependencies:
