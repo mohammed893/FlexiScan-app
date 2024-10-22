@@ -121,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                   });
                 });
               }
-            } ,//hello
+            } ,//hello Test
             title: Text("Enable Bluetooth")),
         ListTile(title: Text("Bluetooth Status"
         ),
