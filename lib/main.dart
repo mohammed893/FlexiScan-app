@@ -1,8 +1,5 @@
-import 'package:flexiscan101/BluetoothScan/Bluetooth_Scan.dart';
-import 'package:flexiscan101/BluetoothScan/detailPage.dart';
-import 'package:flexiscan101/BluetoothScan/ex1.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +23,6 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
