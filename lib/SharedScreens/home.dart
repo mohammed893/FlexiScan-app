@@ -33,8 +33,6 @@ class Home extends StatelessWidget {
                 backgroundColor:Color(0xffd7a859),
                 containerColor: Color(0xff233a66),
               ),
-
-
             ],
           ),
         ],
