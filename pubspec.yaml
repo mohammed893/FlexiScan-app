@@ -82,6 +82,9 @@ flutter:
     - asset/images/Removal-683.png
     - asset/images/Doctor.png
     - asset/images/Patient.png
+    - asset/images/Pointing.gif
+    - asset/images/LookingUp.gif
+    - asset/images/LookingDown.gif
 
 
 

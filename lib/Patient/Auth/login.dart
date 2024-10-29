@@ -79,7 +79,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                     color: Color(0xff233a66),
                   ),
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.6,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.center,
