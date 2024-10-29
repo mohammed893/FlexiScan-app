@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: OnBoardingScreen(),
+      home: Home(),
     );
   }
 }

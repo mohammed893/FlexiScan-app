@@ -10,32 +10,42 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xff233a66),
-      body: Column(
-        children: [
-          Image(image: NetworkImage('asset/images/userordoc.gif')),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+      body: Center(
+        child:
+          Stack(
             children: [
-            buildOptionContainer(
-                function: (){},
-                label: 'Patient',
-                icon: Icons.person,
-                borderColor: Color(0xffd7a859),
-              backgroundColor:Color(0xffd7a859),
-              containerColor: Color(0xffd7a859),
-            ),
-              SizedBox(width: 190,),
-              buildOptionContainer(
-                function: (){},
-                label: 'Doctor',
-                icon: Icons.medical_services_rounded,
-                borderColor: Color(0xffd7a859),
-                backgroundColor:Color(0xffd7a859),
-                containerColor: Color(0xff233a66),
+              Image(image: NetworkImage('asset/images/userordoc.gif'),
+                width: 800,
+                height: 800,
               ),
+            Positioned(
+                bottom: 160,
+
+              child: Row(
+                children:[
+                  buildOptionContainer(
+                    function: (){},
+                    label: 'Patient',
+                    icon: Icons.person,
+                    borderColor: Color(0xffd7a859),
+                    backgroundColor:Color(0xffd7a859),
+                    containerColor: Color(0xffd7a859),
+                  ),
+                  SizedBox(width: 400,),
+                  buildOptionContainer(
+                    function: (){},
+                    label: 'Doctor',
+                    icon: Icons.medical_services_rounded,
+                    borderColor: Color(0xffd7a859),
+                    backgroundColor:Color(0xffd7a859),
+                    containerColor: Color(0xff233a66),
+                  ),
+                ],
+              ),
+            ),
             ],
           ),
-        ],
+
       ),
     );
   }

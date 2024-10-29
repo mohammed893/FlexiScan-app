@@ -86,37 +86,33 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget buildBoarderItem(BoardingModel model) => Padding(
     padding: const EdgeInsets.all(15.0),
     child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Expanded(
           child: Stack(
-           children: [
-           Row(
-             mainAxisAlignment: MainAxisAlignment.center,
-           children: [
-             Flexible(
-               flex: 2,
-               child: Image(
-                 image: AssetImage(model.image),
-                 height: 400,
-                 width: 350,
-               ),
-             ),
-            // if (model.image2 != null)
-            //  Flexible(
-            //    flex: 1,
-            //    child: Image(
-            //      image: AssetImage(model.image2!),
-            //      fit: BoxFit.contain,
-            //      height: 400,
-            //      width: 300,
-            //       ),
-            //  ),
-
-                     ],
-                   ),
-           ],
+        children: [
+          Image.asset(
+            model.image,
+            width: model.oneImage! ? 200 : 300,
+            fit: BoxFit.fitWidth,alignment: Alignment.center,
           ),
+          !model.oneImage! ?Align(
+            alignment: Alignment.bottomRight,
+            child:  Padding(
+              padding: const EdgeInsets.only(right: 0, bottom:0),
+              child: Transform(
+                alignment: Alignment.center,
+                transform: Matrix4.identity()..scale(-1.0, 1.0, 1.0),
+                child: Image.asset(
+                  model.image2!,
+                  fit: BoxFit.fitWidth,
+                  width: 180,
+                ),
+              ),
+            ) ,
+          ):SizedBox(),
+        ],
+      ),
         ),
         SizedBox(height: 20),
         Text(

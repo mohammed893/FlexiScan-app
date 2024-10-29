@@ -70,8 +70,21 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - asset/images/
-
+    - asset/images/Idle.gif
+    - asset/images/Fly1.gif
+    - asset/images/Fly2.gif
+    - asset/images/Selected.gif
+    - asset/images/Selected 2.gif
+    - asset/images/Selected3.gif
+    - asset/images/Error_Start.gif
+    - asset/images/Error_Start2.gif
+    - asset/images/Error_Start 3.gif
+    - asset/images/Removal-683.png
+    - asset/images/Doctor.png
+    - asset/images/Patient.png
+    - asset/images/Pointing.gif
+    - asset/images/LookingUp.gif
+    - asset/images/LookingDown.gif
 
 
 
