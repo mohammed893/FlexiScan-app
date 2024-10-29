@@ -26,7 +26,7 @@ class AuthHome extends StatelessWidget {
                 topRight:Radius.circular(40),
                 topLeft:Radius.circular(40),
               ),
-              color: Color(0xff233a66)
+              color: Color(0xff233a66),
             ),
             width: 400,
             height: screenHeight * 0.65,
