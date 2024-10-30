@@ -2,7 +2,7 @@
 # Flutter App
 
 This Flutter application is developed using Flutter version 3.24.2 and Dart version 3.5.2. It includes various features and functionalities that are explained in detail below.
-
+-
 ## Table of Contents
 - [Features](#features)
 - [Requirements](#requirements)
