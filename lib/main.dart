@@ -3,9 +3,21 @@ import 'package:flexiscan101/Patient/Auth/login.dart';
 import 'package:flexiscan101/Patient/Auth/signup.dart';
 import 'package:flexiscan101/SharedScreens/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'SharedScreens/auth_home.dart';
 
+
+
+Future<void> initializeApp() async {
+  await Future.delayed(Duration(milliseconds: 200));
+}
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  ServicesBinding.instance.defaultBinaryMessenger.setMessageHandler('flutter/lifecycle', (ByteData? message) async {
+    print("Received a message on flutter/lifecycle channel: $message");
+  });
+
   runApp(const MyApp());
 }
 class MyApp extends StatefulWidget {
@@ -26,7 +38,7 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: Login(),
     );
   }
 }

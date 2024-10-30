@@ -43,6 +43,8 @@ dependencies:
   dio: ^5.7.0
   smooth_page_indicator: ^1.2.0+3
   tuple: ^2.0.0
+  fluttertoast: ^8.2.8
+
 
 
 
@@ -85,6 +87,7 @@ flutter:
     - asset/images/Pointing.gif
     - asset/images/LookingUp.gif
     - asset/images/LookingDown.gif
+    - asset/images/HandsUp.gif
 
 
 

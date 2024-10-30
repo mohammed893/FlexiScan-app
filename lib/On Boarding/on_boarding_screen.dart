@@ -1,5 +1,6 @@
 import 'package:flexiscan101/Components/custom/custom_appBar.dart';
 import 'package:flexiscan101/SharedScreens/auth_home.dart';
+import 'package:flexiscan101/SharedScreens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'on_boarding_model.dart';
@@ -139,7 +140,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
-          builder: (context) => AuthHome()
+          builder: (context) => Home()
       ),
           (Route<dynamic >route)=> false,
     );

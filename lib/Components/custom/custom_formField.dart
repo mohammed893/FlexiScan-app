@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 Widget buildFormFiled({
   required String label,
+  required String validatorString,
   bool obscure = false,
   IconData? prefix,
   IconData? suffix,
@@ -10,12 +11,13 @@ Widget buildFormFiled({
   VoidCallback ? suffixPressed,
   color,
   iconColor,
+
   VoidCallback ? onTap,
 })=>TextFormField(
   obscureText: obscure,
    validator: (value){
      if(value == null ||value.isEmpty){
-       return 'Please Enter Your Email';
+       return validatorString ;
      }
      return null;
    },

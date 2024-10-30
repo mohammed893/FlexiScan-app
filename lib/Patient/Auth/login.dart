@@ -1,11 +1,16 @@
 import 'package:flexiscan101/Components/custom/custom_button.dart';
 import 'package:flexiscan101/Patient/Auth/signup.dart';
+import 'package:flexiscan101/Patient/Cubit/auth_cubit/cubit.dart';
+import 'package:flexiscan101/Patient/Cubit/auth_cubit/states.dart';
 import 'package:flexiscan101/Patient/Cubit/cubit.dart';
 import 'package:flexiscan101/Patient/Cubit/states.dart';
 import 'package:flexiscan101/animation_module/cubit.dart';
 import 'package:flexiscan101/animation_module/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../Components/custom/custom_toast.dart';
+import '../../SharedScreens/auth_home.dart';
 
 
 class Login extends StatefulWidget {
@@ -40,8 +45,9 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => FlexiCubit()),
         BlocProvider(create: (context) => animationCubit),
+        BlocProvider(create: (context) => FlexiCubit()),
+        BlocProvider(create: (context)=>AuthCubit()),
       ],
       child: Scaffold(
         backgroundColor: const Color(0xffd7a859),
@@ -60,7 +66,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                         child: ClipRect(
                           child: Image.asset(
                             animationCubit.currentGIF,
-                            height: 250,
+                             height: 250,
                             width: 180,
                             fit: BoxFit.fitWidth,
                           ),
@@ -81,15 +87,13 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height * 0.6,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       BlocBuilder<FlexiCubit, FlexiStates>(
                         builder: (context, flexiState) {
                           return buildTextFieldColumn(context, flexiState);
                         },
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 10),
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
@@ -100,22 +104,53 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 30),
+                      const SizedBox(height: 20),
                       BlocConsumer<AnimationCubit, AnimationStates>(
                         listener: (context, animationState) {
                           // Add listener logic here if needed
                         },
                         builder: (context, animationState) {
-                          return buildButton(
-                            width: double.infinity,
-                            function: () => _login(context, _formKey),
-                            text: 'LOGIN',
-                            textColor: const Color(0xff233a66),
-                            color: const Color(0xffffd691),
+                          return BlocConsumer<AuthCubit, AuthStates>(
+                            listener: (context , state){
+                                if(state is AuthLoginSuccessState){
+                                if(state.loginModel.message!= null){
+                                  print("Message: ${state.loginModel.message}");
+
+                                  if (state.loginModel.token!= null){
+                                    print("Token: ${state.loginModel.token}");
+                                    Navigator.pushAndRemoveUntil(context,
+                                      MaterialPageRoute(builder: (context)=> AuthHome(),
+                                      ),
+                                          (Route<dynamic >route)=> false,
+                                    );
+                                  }
+                                  ShowToast(
+                                      msg: state.loginModel.message!,
+                                      state: ToastStates.success);
+                                }
+                                else{
+                                  ShowToast(
+                                      msg: state.loginModel.message!,
+                                      state: ToastStates.error);
+                                }
+                              }
+                              else if (state is AuthSignupErrorState){
+                                print("Signup failed");
+                              }
+                            },
+                            builder: (context , state){
+                              return buildButton(
+                                width: double.infinity,
+                                function: () => _login(context, _formKey),
+                                text: 'LOGIN',
+                                textColor: const Color(0xff233a66),
+                                color: const Color(0xffffd691),
+                              );
+                            },
                           );
                         },
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 15),
                       buildSignUpRow(context),
                     ],
                   ),
@@ -147,7 +182,6 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
               return null;
             },
             radius: 20,
-            obscure: false,
             color: const Color(0xffffd691),
             prefix: Icons.email,
             iconColor: const Color(0xff233a66),
@@ -165,7 +199,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
               }
             },
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 15),
           buildFormField(
             label: 'Password',
             controller: _passwordController,
