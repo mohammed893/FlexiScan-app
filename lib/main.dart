@@ -1,3 +1,4 @@
+import 'package:flexiscan101/Network/dio_helper.dart';
 import 'package:flexiscan101/On%20Boarding/on_boarding_screen.dart';
 import 'package:flexiscan101/Patient/Auth/login.dart';
 import 'package:flexiscan101/Patient/Auth/signup.dart';
@@ -13,6 +14,7 @@ Future<void> initializeApp() async {
 }
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  DioHelper.init();
 
   ServicesBinding.instance.defaultBinaryMessenger.setMessageHandler('flutter/lifecycle', (ByteData? message) async {
     print("Received a message on flutter/lifecycle channel: $message");
@@ -38,7 +40,7 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: Login(),
+      home: Home(),
     );
   }
 }

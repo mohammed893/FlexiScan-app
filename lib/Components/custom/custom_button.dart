@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 Widget buildButton({
-  required width,
+  required double width,
   required VoidCallback function,
   required String text,
   required color,

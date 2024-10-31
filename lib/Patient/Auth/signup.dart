@@ -26,7 +26,7 @@ class Signup extends StatelessWidget {
    Widget build(BuildContext context) {
     return MultiBlocProvider(
        providers: [
-         BlocProvider(create: (context) => FlexiCubit()),
+         BlocProvider(create: (context) =>FlexiCubit()),
          BlocProvider(create: (context)=>AuthCubit()),
        ],
        child: Scaffold(
@@ -221,7 +221,7 @@ Widget buildSignUpRow(context){
          TextButton(
            onPressed: (){
              Navigator.push(context,
-               MaterialPageRoute(builder: (context)=>Login()),
+               MaterialPageRoute(builder: (context)=>Login(userType:'d' ,)),
              );
            },
            child: Text('Log In'),

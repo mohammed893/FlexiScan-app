@@ -13,20 +13,24 @@ class AuthCubit extends Cubit<AuthStates>{
   SignupModel? signupModel;
 
 
-  void login({
+  Future<void> login({
     required String email,
     required String password,
+    required String userType
   }
-      ){
-    DioHelper.postData(
+      )async{
+    await DioHelper.postData(
         url: LOGIN,
         data: {
           'email':email,
           'password':password,
+          'type':userType
         }).then((value){
+      print(value.data);
       loginModel = LoginModel.fromJson(value.data);
       emit(AuthLoginSuccessState(loginModel!));
     }).catchError((error){
+      print(error);
       emit(AuthLoginErrorState(error.toString()));
     });
   }

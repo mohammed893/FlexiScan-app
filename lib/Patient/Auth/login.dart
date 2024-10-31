@@ -14,13 +14,16 @@ import '../../SharedScreens/auth_home.dart';
 
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+  final String userType;
+  const Login({super.key , required this.userType});
 
   @override
   State<Login> createState() => _LoginState();
+
 }
 
 class _LoginState extends State<Login> with TickerProviderStateMixin {
+  late String userType;
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -32,7 +35,11 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
     super.didChangeDependencies();
     animationCubit = AnimationCubit(this, context); // Initialize without `this` and context
   }
-
+ @override
+  void initState() {
+    super.initState();
+    userType = widget.userType;  // Initialize with the passed value
+  }
   @override
   void dispose() {
     _emailController.dispose();
@@ -47,9 +54,9 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
       providers: [
         BlocProvider(create: (context) => animationCubit),
         BlocProvider(create: (context) => FlexiCubit()),
-        BlocProvider(create: (context)=>AuthCubit()),
+        BlocProvider(create: (context) => AuthCubit()),
       ],
-      child: Scaffold(
+      child: Scaffold(resizeToAvoidBottomInset: false,
         backgroundColor: const Color(0xffd7a859),
         body: BlocBuilder<AnimationCubit, AnimationStates>(
           builder: (context, state) {
@@ -76,7 +83,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(40),
@@ -85,7 +92,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                     color: Color(0xff233a66),
                   ),
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.6,
+                  height: MediaQuery.of(context).size.height * 0.5,
                   child: Column(
                     children: [
                       BlocBuilder<FlexiCubit, FlexiStates>(
@@ -93,7 +100,6 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                           return buildTextFieldColumn(context, flexiState);
                         },
                       ),
-                      const SizedBox(height: 10),
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
@@ -104,7 +110,6 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
                       BlocConsumer<AnimationCubit, AnimationStates>(
                         listener: (context, animationState) {
                           // Add listener logic here if needed
@@ -112,36 +117,12 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                         builder: (context, animationState) {
                           return BlocConsumer<AuthCubit, AuthStates>(
                             listener: (context , state){
-                                if(state is AuthLoginSuccessState){
-                                if(state.loginModel.message!= null){
-                                  print("Message: ${state.loginModel.message}");
-
-                                  if (state.loginModel.token!= null){
-                                    print("Token: ${state.loginModel.token}");
-                                    Navigator.pushAndRemoveUntil(context,
-                                      MaterialPageRoute(builder: (context)=> AuthHome(),
-                                      ),
-                                          (Route<dynamic >route)=> false,
-                                    );
-                                  }
-                                  ShowToast(
-                                      msg: state.loginModel.message!,
-                                      state: ToastStates.success);
-                                }
-                                else{
-                                  ShowToast(
-                                      msg: state.loginModel.message!,
-                                      state: ToastStates.error);
-                                }
-                              }
-                              else if (state is AuthSignupErrorState){
-                                print("Signup failed");
-                              }
+                              print(state);
                             },
                             builder: (context , state){
                               return buildButton(
                                 width: double.infinity,
-                                function: () => _login(context, _formKey),
+                                function: () => _login(context, _formKey , AuthCubit.get(context) , userType),
                                 text: 'LOGIN',
                                 textColor: const Color(0xff233a66),
                                 color: const Color(0xffffd691),
@@ -150,7 +131,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                           );
                         },
                       ),
-                      const SizedBox(height: 15),
+                      const SizedBox(height: 10),
                       buildSignUpRow(context),
                     ],
                   ),
@@ -199,7 +180,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
               }
             },
           ),
-          const SizedBox(height: 15),
+          const SizedBox(height: 10),
           buildFormField(
             label: 'Password',
             controller: _passwordController,
@@ -268,7 +249,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
     );
   }
 
-  Future<void> _login(BuildContext context, GlobalKey<FormState> formKey) async {
+  Future<void> _login(BuildContext context, GlobalKey<FormState> formKey , AuthCubit authCubit , String userType) async {
     if (formKey.currentState!.validate()) {
       final cubit = AnimationCubit.get(context);
       await Future.delayed(Duration(seconds: 1));
@@ -276,16 +257,18 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
       if (cubit.currentState != "Idle") {
         await cubit.changeToIdle(cubit.currentState);
       }
-
-      cubit.changeFromIdle("Flying");
-      await Future.delayed(const Duration(milliseconds: 900));
-
-      if (cubit.currentState != null) {
+      await authCubit.login(email: _emailController.text, password: _passwordController.text , userType: userType);
+      if(authCubit.state is AuthLoginSuccessState && authCubit.loginModel!.token != null){
+        cubit.changeFromIdle("Flying");
+        await Future.delayed(const Duration(milliseconds: 900));
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => Signup()),
         );
+      }else{
+        print('login failed');
       }
+    
     } else {
       // Handle form validation error
       print("Form validation failed.");

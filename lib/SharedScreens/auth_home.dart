@@ -50,7 +50,7 @@ class AuthHome extends StatelessWidget {
         buildButton(width: 280, function: (){
           Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context)=>Login()),
+            MaterialPageRoute(builder: (context)=>const Login(userType: "p",)),
                 (Route<dynamic >route)=> false, );
         },
             text: "Patient",
@@ -60,7 +60,7 @@ class AuthHome extends StatelessWidget {
         buildButton(width: 280, function: (){
           Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context)=>Login()),
+            MaterialPageRoute(builder: (context)=>const Login(userType: "d",)),
                 (Route<dynamic >route)=> false, );
         },
             text: "Doctor",
