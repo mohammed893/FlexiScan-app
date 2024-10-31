@@ -1,15 +1,14 @@
 // screens/home_screen.dart
-
-import 'package:flexiscan101/screens/ai_screen.dart';
-import 'package:flexiscan101/screens/book_screen.dart';
-import 'package:flexiscan101/screens/chat_screen.dart';
-import 'package:flexiscan101/screens/sessions_info_screen.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../shared/app_cubit/app_cubit.dart';
-import '../shared/app_cubit/app_states.dart';
-import '../shared/components/custum_components.dart';
-import '../shared/styles/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:physical_theraby/screens/ai_screen.dart';
+import 'package:physical_theraby/screens/book_screen.dart';
+import 'package:physical_theraby/screens/chat_screen.dart';
+import 'package:physical_theraby/screens/sessions_info_screen.dart';
+import 'package:physical_theraby/shared/app_cubit/app_cubit.dart';
+import 'package:physical_theraby/shared/app_cubit/app_states.dart';
+import 'package:physical_theraby/shared/components/custum_components.dart';
+import 'package:physical_theraby/shared/styles/colors.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

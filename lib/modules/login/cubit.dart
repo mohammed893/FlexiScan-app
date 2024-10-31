@@ -2,10 +2,10 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:flexiscan101/modules/login/states.dart';
-import 'package:flexiscan101/shared/endpoints.dart';
-import 'package:flexiscan101/shared/network/local/secure_data.dart';
-
+import 'package:physical_theraby/modules/login/states.dart';
+import 'package:physical_theraby/shared/endpoints.dart';
+import 'package:physical_theraby/shared/network/local/secure_data.dart';
+import 'package:physical_theraby/shared/network/remote/dio_helper.dart';
 
 class AuthCubit extends Cubit<LoginStates> {
   final SecureStorage _secureStorage = SecureStorage();
