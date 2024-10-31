@@ -3,12 +3,12 @@ import 'package:flexiscan101/Components/custom/custom_button.dart';
 import 'package:flexiscan101/Components/custom/custom_formField.dart';
 import 'package:flexiscan101/Components/custom/custom_optional_button.dart';
 import 'package:flexiscan101/Components/custom/custom_toast.dart';
-import 'package:flexiscan101/Patient/Auth/login.dart';
-import 'package:flexiscan101/Patient/Cubit/auth_cubit/cubit.dart';
-import 'package:flexiscan101/Patient/Cubit/auth_cubit/states.dart';
+import 'package:flexiscan101/Auth/login.dart';
+import 'package:flexiscan101/Auth/auth_cubit/cubit.dart';
+import 'package:flexiscan101/Auth/auth_cubit/states.dart';
 import 'package:flexiscan101/Patient/Cubit/cubit.dart';
 import 'package:flexiscan101/Patient/Cubit/states.dart';
-import 'package:flexiscan101/SharedScreens/auth_home.dart';
+import 'package:flexiscan101/SharedScreens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,7 +39,7 @@ class Signup extends StatelessWidget {
                    if (state.signupModel.token!= null){
                      print("Token: ${state.signupModel.token}");
                      Navigator.pushAndRemoveUntil(context,
-                       MaterialPageRoute(builder: (context)=> AuthHome(),
+                       MaterialPageRoute(builder: (context)=> Home(),
                        ),
                            (Route<dynamic >route)=> false,
                      );

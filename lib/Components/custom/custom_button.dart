@@ -7,6 +7,7 @@ Widget buildButton({
   required color,
   textColor,
   height,
+  bool loading = false
 }) => Container(
   width: width,
   height: height,
@@ -26,7 +27,7 @@ Widget buildButton({
     style: TextButton.styleFrom(
       backgroundColor:color,
     ),
-    child: Text(
+    child:loading? const CircularProgressIndicator() :Text(
       text,
       style: TextStyle(
         color:  textColor,

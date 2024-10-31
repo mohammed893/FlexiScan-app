@@ -1,5 +1,5 @@
 
-import 'package:flexiscan101/Patient/Auth/login.dart';
+import 'package:flexiscan101/Auth/login.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -15,7 +15,7 @@ class Home extends StatelessWidget {
               Stack(
                 children: [
                 buildTextColumn(),
-                Positioned(
+                const Positioned(
                   top: 60,left: 0,right: 0,
                   child: Image(image: AssetImage('asset/images/HandsUp.gif',),
                       width: 500,

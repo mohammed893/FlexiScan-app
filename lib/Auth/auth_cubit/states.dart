@@ -1,5 +1,5 @@
-import '../../Models/login_model.dart';
-import '../../Models/signup_model.dart';
+import '../Models/login_model.dart';
+import '../Models/signup_model.dart';
 
 abstract class AuthStates{}
 
@@ -14,6 +14,8 @@ class AuthLoginErrorState extends AuthStates{
   final String error;
   AuthLoginErrorState(this.error);
 }
+
+class AuthLoadingState extends AuthStates{}
 
 class AuthSignupSuccessState extends AuthStates{
   final SignupModel signupModel;

@@ -1,16 +1,12 @@
 import 'package:flexiscan101/Network/dio_helper.dart';
 import 'package:flexiscan101/On%20Boarding/on_boarding_screen.dart';
-import 'package:flexiscan101/Patient/Auth/login.dart';
-import 'package:flexiscan101/Patient/Auth/signup.dart';
-import 'package:flexiscan101/SharedScreens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'SharedScreens/auth_home.dart';
 
 
 
 Future<void> initializeApp() async {
-  await Future.delayed(Duration(milliseconds: 200));
+  await Future.delayed(const Duration(milliseconds: 200));
 }
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +36,7 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: OnBoardingScreen(),
     );
   }
 }

@@ -1,5 +1,3 @@
-import 'package:flexiscan101/Patient/Models/login_model.dart';
-
 abstract class FlexiStates{}
 
 class FlexiInitialState extends FlexiStates{}

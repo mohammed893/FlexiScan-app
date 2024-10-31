@@ -1,10 +1,10 @@
  import 'package:bloc/bloc.dart';
-import 'package:flexiscan101/Patient/Cubit/auth_cubit/states.dart';
-import 'package:flexiscan101/Patient/Models/login_model.dart';
-import 'package:flexiscan101/Patient/Models/signup_model.dart';
+import 'package:flexiscan101/Auth/auth_cubit/states.dart';
+import 'package:flexiscan101/Auth/Models/login_model.dart';
+import 'package:flexiscan101/Auth/Models/signup_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../Network/dio_helper.dart';
-import '../../../Network/end_points.dart';
+import '../../Network/dio_helper.dart';
+import '../../Network/end_points.dart';
 
 class AuthCubit extends Cubit<AuthStates>{
   AuthCubit() :super(AuthInitialState());
@@ -19,6 +19,7 @@ class AuthCubit extends Cubit<AuthStates>{
     required String userType
   }
       )async{
+        emit(AuthLoadingState());
     await DioHelper.postData(
         url: LOGIN,
         data: {

@@ -1,16 +1,15 @@
 import 'package:flexiscan101/Components/custom/custom_button.dart';
-import 'package:flexiscan101/Patient/Auth/signup.dart';
-import 'package:flexiscan101/Patient/Cubit/auth_cubit/cubit.dart';
-import 'package:flexiscan101/Patient/Cubit/auth_cubit/states.dart';
+import 'package:flexiscan101/Auth/signup.dart';
+import 'package:flexiscan101/Auth/auth_cubit/cubit.dart';
+import 'package:flexiscan101/Auth/auth_cubit/states.dart';
 import 'package:flexiscan101/Patient/Cubit/cubit.dart';
 import 'package:flexiscan101/Patient/Cubit/states.dart';
 import 'package:flexiscan101/animation_module/cubit.dart';
 import 'package:flexiscan101/animation_module/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-import '../../Components/custom/custom_toast.dart';
-import '../../SharedScreens/auth_home.dart';
 
 
 class Login extends StatefulWidget {
@@ -92,7 +91,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                     color: Color(0xff233a66),
                   ),
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.52,
                   child: Column(
                     children: [
                       BlocBuilder<FlexiCubit, FlexiStates>(
@@ -126,6 +125,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                                 text: 'LOGIN',
                                 textColor: const Color(0xff233a66),
                                 color: const Color(0xffffd691),
+                                loading: (AuthCubit.get(context).state is AuthLoadingState) 
                               );
                             },
                           );
@@ -258,6 +258,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
         await cubit.changeToIdle(cubit.currentState);
       }
       await authCubit.login(email: _emailController.text, password: _passwordController.text , userType: userType);
+    
       if(authCubit.state is AuthLoginSuccessState && authCubit.loginModel!.token != null){
         cubit.changeFromIdle("Flying");
         await Future.delayed(const Duration(milliseconds: 900));
@@ -266,11 +267,14 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
           MaterialPageRoute(builder: (context) => Signup()),
         );
       }else{
-        print('login failed');
+        if(authCubit.state is AuthLoginErrorState){
+          print('login failed');
+          cubit.changeFromIdle("error");
+          Fluttertoast.showToast(msg: "Email or password invalid" , textColor: Colors.white , backgroundColor: Colors.grey);
+        }
       }
     
     } else {
-      // Handle form validation error
       print("Form validation failed.");
     }
   }
