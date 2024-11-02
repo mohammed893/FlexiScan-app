@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-AppBar Appbar({
+AppBar  appbar({
   required String title,
   textColor,
   backGroundColor,

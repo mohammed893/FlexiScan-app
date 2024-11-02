@@ -2,13 +2,13 @@
 import 'package:flexiscan101/Auth/login.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class AuthHome extends StatelessWidget {
+  const AuthHome({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff233a66),
+      backgroundColor:const Color(0xff233a66),
       body:
           Center(
             child:
@@ -23,7 +23,7 @@ class Home extends StatelessWidget {
                     ),
                 ),
                 Positioned(
-                  bottom: 400,
+                  bottom: MediaQuery.of(context).size.height * 0.59,
                   left: 10,
                   right: 0,
                   child: Align(
@@ -37,20 +37,20 @@ class Home extends StatelessWidget {
                           },
                           label: 'Patient',
                           icon: Icons.person,
-                          borderColor: Color(0xffd7a859),
-                          backgroundColor:Color(0xffd7a859),
-                          containerColor: Color(0xffd7a859),
+                          borderColor:const Color(0xffd7a859),
+                          backgroundColor:const Color(0xffd7a859),
+                          containerColor:const Color(0xffd7a859),
                         ),
-                        SizedBox(width: 130),
+                        const SizedBox(width: 140),
                         buildOptionContainer(
                           function: (){
                             submit(context , "d");
                           },
                           label: 'Doctor',
                           icon: Icons.medical_services_rounded,
-                          borderColor: Color(0xffd7a859),
-                          backgroundColor:Color(0xffd7a859),
-                          containerColor: Color(0xff233a66),
+                          borderColor:const Color(0xffd7a859),
+                          backgroundColor:const Color(0xffd7a859),
+                          containerColor:const Color(0xff233a66),
                         ),
                       ],
                     ),
@@ -73,7 +73,7 @@ class Home extends StatelessWidget {
   required Color containerColor,
 }) {
   return Container(
-    width: 126,
+    width: 130,
     height: 40,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(45),
@@ -94,15 +94,15 @@ class Home extends StatelessWidget {
           Icon(
             icon,
             size: 20,
-            color: Color(0xff233a66),
+            color:const Color(0xff233a66),
           ),
-          SizedBox(width: 8),
+          const SizedBox(width: 8),
           Text(
             label,
-            style: TextStyle(
+            style:const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
-              fontSize: 15,
+              fontSize: 16,
             ),
           ),
         ],
@@ -111,8 +111,9 @@ class Home extends StatelessWidget {
   );
 }
   Widget buildTextColumn(){
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
+    return const Padding(
+      padding:  EdgeInsets.only(top: 80,
+      left: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

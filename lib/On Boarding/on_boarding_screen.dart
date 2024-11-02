@@ -1,5 +1,5 @@
-import 'package:flexiscan101/Components/custom/custom_appBar.dart';
-import 'package:flexiscan101/SharedScreens/home.dart';
+import 'package:flexiscan101/Components/custom/custom_appbar.dart';
+import 'package:flexiscan101/Auth/auth_home.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'on_boarding_model.dart';
@@ -18,15 +18,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Appbar(
+      appBar: appbar(
         title: '',
         onPressed: () {
           submit();
         },
-        backGroundColor: Color(0xff233a66),
-        textButtonColor: Color(0xffd7a859),
+        backGroundColor:const Color(0xff233a66),
+        textButtonColor:const Color(0xffd7a859),
       ),
-      backgroundColor: Color(0xff233a66),
+      backgroundColor:const Color(0xff233a66),
       body: Column(
         children: [
           Expanded(
@@ -48,7 +48,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 SmoothPageIndicator(
                   controller: controller,
                   count: boarding.length,
-                  effect: ExpandingDotsEffect(
+                  effect:const ExpandingDotsEffect(
                     dotColor: Color(0XFFffd691),
                     dotHeight: 10,
                     expansionFactor: 4,
@@ -57,20 +57,20 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     activeDotColor: Colors.white,
                   ),
                 ),
-                Spacer(),
+                 const Spacer(),
                 FloatingActionButton(
                   onPressed: () {
                     if (isLast) {
                      submit();
                     } else {
                       controller.nextPage(
-                        duration: Duration(milliseconds: 500),
+                        duration:const Duration(milliseconds: 500),
                         curve: Curves.fastEaseInToSlowEaseOut,
                       );
                     }
                   },
-                  backgroundColor: Color(0xffd7a859),
-                  child: Icon(
+                  backgroundColor:const Color(0xffd7a859),
+                  child:const Icon(
                     Icons.arrow_forward_ios_rounded,
                     color: Color(0xff233a66),
                   ),
@@ -86,47 +86,49 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget buildBoarderItem(BoardingModel model) => Padding(
     padding: const EdgeInsets.all(15.0),
     child: Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          child: Stack(
-        children: [
-          Image.asset(
-            model.image,
-            width: model.oneImage! ? 200 : 300,
-            fit: BoxFit.fitWidth,alignment: Alignment.center,
-          ),
-          !model.oneImage! ?Align(
-            alignment: Alignment.bottomRight,
-            child:  Padding(
-              padding: const EdgeInsets.only(right: 0, bottom:0),
-              child: Transform(
-                alignment: Alignment.center,
-                transform: Matrix4.identity()..scale(-1.0, 1.0, 1.0),
-                child: Image.asset(
-                  model.image2!,
-                  fit: BoxFit.fitWidth,
-                  width: 180,
+          child: Center(
+            child: Stack(
+                    children: [
+            Image.asset(
+              model.image,
+              width: model.oneImage! ? 200 : 300,
+              fit: BoxFit.fitWidth,alignment: Alignment.center,
+            ),
+            !model.oneImage! ?Align(
+              alignment: Alignment.bottomRight,
+              child:  Padding(
+                padding: const EdgeInsets.only(right: 0, bottom:0),
+                child: Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.identity()..scale(-1.0, 1.0, 1.0),
+                  child: Image.asset(
+                    model.image2!,
+                    fit: BoxFit.fitWidth,
+                    width: 180,
+                  ),
                 ),
-              ),
-            ) ,
-          ):SizedBox(),
-        ],
-      ),
+              ) ,
+            ):const SizedBox(),
+                    ],
+                  ),
+          ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Text(
           model.title,
-          style: TextStyle(
+          style:const TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.bold,
             color: Color(0xffd7a859),
           ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Text(
           model.body,
-          style: TextStyle(
+          style:const TextStyle(
             fontSize: 18,
             color: Colors.white,
           ),
@@ -139,7 +141,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
-          builder: (context) => Home()
+          builder: (context) =>const AuthHome()
       ),
           (Route<dynamic >route)=> false,
     );

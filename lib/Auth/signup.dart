@@ -1,6 +1,6 @@
 
 import 'package:flexiscan101/Components/custom/custom_button.dart';
-import 'package:flexiscan101/Components/custom/custom_formField.dart';
+import 'package:flexiscan101/Components/custom/custom_formfield.dart';
 import 'package:flexiscan101/Components/custom/custom_optional_button.dart';
 import 'package:flexiscan101/Components/custom/custom_toast.dart';
 import 'package:flexiscan101/Auth/login.dart';
@@ -8,21 +8,42 @@ import 'package:flexiscan101/Auth/auth_cubit/cubit.dart';
 import 'package:flexiscan101/Auth/auth_cubit/states.dart';
 import 'package:flexiscan101/Patient/Cubit/cubit.dart';
 import 'package:flexiscan101/Patient/Cubit/states.dart';
-import 'package:flexiscan101/SharedScreens/home.dart';
+import 'package:flexiscan101/Auth/auth_home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Signup extends StatelessWidget {
-    Signup({super.key});
+class Signup extends StatefulWidget {
+  final String userType;
+  Signup({super.key, required this.userType});
 
-    final formKey = GlobalKey<FormState>();
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
-    final genderController = TextEditingController();
-    final nameController = TextEditingController();
 
 
   @override
+  State<Signup> createState() => _SignupState();
+}
+
+class _SignupState extends State<Signup> {
+  late String userType;
+
+  final formKey = GlobalKey<FormState>();
+
+    final emailController = TextEditingController();
+
+    final passwordController = TextEditingController();
+
+    final nameController = TextEditingController();
+
+    final phoneController = TextEditingController();
+
+    final dateController = TextEditingController();
+
+    @override
+    void initState(){
+      super.initState();
+      userType = widget.userType;
+    }
+
+    @override
    Widget build(BuildContext context) {
     return MultiBlocProvider(
        providers: [
@@ -30,7 +51,8 @@ class Signup extends StatelessWidget {
          BlocProvider(create: (context)=>AuthCubit()),
        ],
        child: Scaffold(
-         backgroundColor: Color(0xffd7a859),
+         resizeToAvoidBottomInset: false,
+         backgroundColor:const Color(0xffd7a859),
          body: BlocConsumer<AuthCubit, AuthStates>(
              listener: (context , state){
                if(state is AuthSignupSuccessState){
@@ -39,17 +61,17 @@ class Signup extends StatelessWidget {
                    if (state.signupModel.token!= null){
                      print("Token: ${state.signupModel.token}");
                      Navigator.pushAndRemoveUntil(context,
-                       MaterialPageRoute(builder: (context)=> Home(),
+                       MaterialPageRoute(builder: (context)=>const AuthHome(),
                        ),
                            (Route<dynamic >route)=> false,
                      );
                    }
-                   ShowToast(
+                   showToast(
                        msg: state.signupModel.message,
                        state: ToastStates.success);
                  }
                  else{
-                   ShowToast(
+                   showToast(
                        msg: state.signupModel.message,
                        state: ToastStates.error);
                  }
@@ -64,11 +86,12 @@ class Signup extends StatelessWidget {
              return Column(
                crossAxisAlignment: CrossAxisAlignment.start,
                children: [
+                 const SizedBox( height: 50,),
                  buildTextColumn(),
-                 SizedBox(height: 10,),
+                 const Spacer(),
                  Center(
                    child: Container(
-                     decoration: BoxDecoration(
+                     decoration:const BoxDecoration(
                        borderRadius: BorderRadius.only(
                          topLeft: Radius.circular(40),
                          topRight: Radius.circular(40),
@@ -76,30 +99,19 @@ class Signup extends StatelessWidget {
                        color:Color(0xff233a66),
                      ),
                      width: double.infinity,
-                     height: 491,
+                     height: MediaQuery.of(context).size.height * 0.68,
                      child: Padding(
                        padding: const EdgeInsets.symmetric(
                            vertical: 30,
-                           horizontal: 40
+                           horizontal: 30,
                        ),
                        child: BlocBuilder<FlexiCubit,FlexiStates>(
                          builder: (context , state){
                            return Column(
                              crossAxisAlignment: CrossAxisAlignment.start,
                              children: [
-                               buildTextFiledColum(cubit),
-                               SizedBox(height: 10,),
-                               buildOptionButtonRow(
-                                 'Gender',
-                                 'Male',
-                                 'Female',
-                                 cubit.isMaleSelected,
-                                 cubit.isFemaleSelected,
-                                 cubit.selectMale,
-                                 cubit.selectFemale,
-                                 cubit,
-                               ),
-                               SizedBox(height: 21,),
+                               buildTextFiledColum(cubit, context),
+                               const SizedBox(height: 35,),
                                Center(
                                  child: buildButton(
                                      width: 380,
@@ -109,13 +121,21 @@ class Signup extends StatelessWidget {
                                            name: nameController.text,
                                            email: emailController.text,
                                            password: passwordController.text,
-                                           gender: genderController.text,
+                                           dateOfBirth: dateController.text,
+                                           phoneNumber: phoneController.text,
+                                           type: userType,
+                                           gender: '',
+                                           age: '',
+                                           hospital: '',
+                                           nationalID: '',
+                                           verification: '',
+                                           follow: false,
                                          );
                                        }
                                      },
                                      text: 'SIGN UP',
-                                     textColor:Color(0xff233a66),
-                                     color: Color(0xffffd691)),
+                                     textColor:const Color(0xff233a66),
+                                     color:const Color(0xffffd691)),
                                ),
                                buildSignUpRow(context),
                              ],
@@ -128,13 +148,12 @@ class Signup extends StatelessWidget {
                ],
              );
            },
-
          ),
        ),
      );
    }
 
-Widget buildTextFiledColum(FlexiCubit cubit){
+Widget buildTextFiledColum(FlexiCubit cubit, context){
      return  Form(
        key:formKey ,
        child: Column(
@@ -142,29 +161,58 @@ Widget buildTextFiledColum(FlexiCubit cubit){
            buildFormFiled(
              label: 'Name',
              controller: nameController,
-             color: Color(0xffffd691),
+             color:const Color(0xffffd691),
              validatorString: 'Please Enter Your Name',
            ),
-           SizedBox(height: 15,),
+           const SizedBox(height: 20,),
            buildFormFiled(
              label: 'Email Address',
              controller: emailController,
-             color: Color(0xffffd691),
+             color:const Color(0xffffd691),
              validatorString: 'Please Enter Your Email',
            ),
-           SizedBox(height: 15,),
+           const SizedBox(height: 20,),
            buildFormFiled(
                label: 'Password',
                controller: passwordController,
                obscure: cubit.isPassword,
-               color: Color(0xffffd691),
-               iconColor: Color(0xff233a66),
+               color: const Color(0xffffd691),
+               iconColor:const Color(0xff233a66),
                suffix: cubit.suffix,
                validatorString: 'Please Enter Your Password',
                suffixPressed: (){
                  cubit.changePasswordVisibility();
                }
            ),
+           const SizedBox(height: 20,),
+           buildFormFiled(
+               label: 'Phone Number',
+               controller: phoneController,
+               color: const Color(0xffffd691),
+               validatorString: 'Please Enter Your Phone Number',
+           ),
+           const SizedBox(height: 20,),
+           buildFormFiled(
+             label: 'Date Of Birth',
+             controller: dateController,
+             color: const Color(0xffffd691),
+             validatorString: 'Please Enter Your Date Of Birth',
+             onTap:() async {
+               DateTime? pickedDate = await showDatePicker(
+                 context: context,
+                 initialDate: DateTime.now(),
+                 firstDate: DateTime.now(),
+                 lastDate: DateTime(2030, 12, 31),
+               );
+               if (pickedDate != null) {
+                 dateController.text =
+                 "${pickedDate.year}-${pickedDate
+                     .month}-${pickedDate.day}";
+               }
+             },
+
+           ),
+
 
          ],
        ),
@@ -183,11 +231,11 @@ Widget buildOptionButtonRow(String label,
        crossAxisAlignment: CrossAxisAlignment.start,
        children: [
          Text(label,
-         style: TextStyle(
+         style:const TextStyle(
            color: Colors.white,
            fontSize: 20,
          ),),
-         SizedBox(height: 15,),
+         const SizedBox(height: 15,),
          Row(
            children: [
              buildOptionButton(
@@ -196,7 +244,7 @@ Widget buildOptionButtonRow(String label,
                  onTap: (){
                    cubit.selectMale();
                  }),
-             SizedBox(width: 16),
+             const SizedBox(width: 16),
              buildOptionButton(
                text: tex2,
                isSelected: isSelected2,
@@ -214,19 +262,19 @@ Widget buildSignUpRow(context){
      return  Row(
       mainAxisAlignment: MainAxisAlignment.center,
        children: [
-         Text('You have an account?',
+         const  Text('You have an account?',
            style: TextStyle(
                color: Colors.white
            ),),
          TextButton(
            onPressed: (){
              Navigator.push(context,
-               MaterialPageRoute(builder: (context)=>Login(userType:'d' ,)),
+               MaterialPageRoute(builder: (context)=>const Login(userType:'d' ,)),
              );
            },
-           child: Text('Log In'),
+            child: const Text('Log In'),
            style: TextButton.styleFrom(
-             foregroundColor: Color(0xffffd691),
+             foregroundColor:const Color(0xffffd691),
            ),
          ),
 
@@ -235,22 +283,24 @@ Widget buildSignUpRow(context){
    }
 
 Widget buildTextColumn(){
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
+    return const Padding(
+      padding:  EdgeInsets.only(
+        left: 20,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text("Sign-Up Now ",
             style: TextStyle(
               color: Color(0xff233a66),
-              fontSize: 30,
+              fontSize: 40,
               fontWeight: FontWeight.bold,
             ),
           ),
           Text(" To Have Unique Experience With Us",
             style: TextStyle(
               color: Colors.white,
-              fontSize: 20,
+              fontSize: 30,
             ),
           ),
         ],

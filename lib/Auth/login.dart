@@ -237,7 +237,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Signup()),
+              MaterialPageRoute(builder: (context) => Signup(userType: userType,)),
             );
           },
           child: const Text('Sign Up'),
@@ -252,7 +252,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
   Future<void> _login(BuildContext context, GlobalKey<FormState> formKey , AuthCubit authCubit , String userType) async {
     if (formKey.currentState!.validate()) {
       final cubit = AnimationCubit.get(context);
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed( const Duration(seconds: 1));
 
       if (cubit.currentState != "Idle") {
         await cubit.changeToIdle(cubit.currentState);
@@ -264,7 +264,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
         await Future.delayed(const Duration(milliseconds: 900));
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => Signup()),
+          MaterialPageRoute(builder: (context) => Signup(userType: userType,)),
         );
       }else{
         if(authCubit.state is AuthLoginErrorState){
@@ -299,19 +299,19 @@ Widget buildFormField({
   controller: controller,
   decoration: InputDecoration(
     labelText: label,
-    labelStyle: TextStyle(color: Color(0xff233a66)),
-    prefix: Icon(prefix, color: iconColor),
-    errorStyle: TextStyle(
-      color: const Color.fromARGB(255, 255, 170, 140), // Change this to your desired error color
+    labelStyle:const TextStyle(color: Color(0xff233a66)),
+    prefix:  Icon(prefix, color: iconColor),
+    errorStyle: const TextStyle(
+      color:  Color.fromARGB(255, 255, 170, 140), // Change this to your desired error color
       fontSize: 14,
     ),
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(radius),
-      borderSide: BorderSide(color: const Color.fromARGB(255, 255, 170, 140)), // Change this to your desired border color
+      borderSide:const BorderSide(color:  Color.fromARGB(255, 255, 170, 140)), // Change this to your desired border color
     ),
     focusedErrorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(radius),
-      borderSide: BorderSide(color: const Color.fromARGB(255, 255, 170, 140)), // Change this to your desired focused border color
+      borderSide:const BorderSide(color:  Color.fromARGB(255, 255, 170, 140)), // Change this to your desired focused border color
     ),errorText: "",
     suffixIcon: IconButton(
       onPressed: suffixPressed,

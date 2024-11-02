@@ -2,7 +2,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 
 
-void ShowToast({
+void showToast({
   required String msg,
   required ToastStates state,
 })=>Fluttertoast.showToast(

@@ -1,7 +1,6 @@
 import 'package:flexiscan101/Network/dio_helper.dart';
 import 'package:flexiscan101/On%20Boarding/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 
 
@@ -11,10 +10,6 @@ Future<void> initializeApp() async {
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   DioHelper.init();
-
-  ServicesBinding.instance.defaultBinaryMessenger.setMessageHandler('flutter/lifecycle', (ByteData? message) async {
-    print("Received a message on flutter/lifecycle channel: $message");
-  });
 
   runApp(const MyApp());
 }
@@ -27,16 +22,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'FlEXI_SCAN',
-
-      theme: ThemeData(
-
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
       debugShowCheckedModeBanner: false,
-      home: OnBoardingScreen(),
+      home:   OnBoardingScreen(),
     );
   }
 }

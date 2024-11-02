@@ -1,4 +1,3 @@
-  import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
   Widget buildOptionButton(
   {
@@ -12,17 +11,17 @@ import 'package:flutter/material.dart';
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: AnimatedContainer(
-          duration: Duration(milliseconds: 300),
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          duration:const Duration(milliseconds: 300),
+          padding:const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           decoration: BoxDecoration(
-            color: isSelected ?Colors.white : Color(0xffffd691),
+            color: isSelected ?Colors.white :const Color(0xffffd691),
             borderRadius: BorderRadius.circular(20),
-            border: Border.all(color:  isSelected ?Colors.white : Color(0xffffd691),),
+            border: Border.all(color:  isSelected ?Colors.white :const Color(0xffffd691),),
           ),
           child: Text(
             text,
             style: TextStyle(
-              color: isSelected ? Color(0xff233a66) :Colors.white,
+              color: isSelected ?const Color(0xff233a66) :Colors.white,
             ),
           ),
         ),
