@@ -12,6 +12,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DioHelper.init();
   await CachHelper.init();
+  CachHelper.putBool(key: 'onboarding', value: false); // just for testing 
   bool isDark = CachHelper.getData(key: 'isDark');
   bool onboarding = CachHelper.getData(key: 'onboarding' );
   runApp(MyApp(isDark: isDark ,     

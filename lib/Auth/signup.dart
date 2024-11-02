@@ -14,9 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Signup extends StatefulWidget {
   final String userType;
-  Signup({super.key, required this.userType});
-
-
+  const Signup({super.key, required this.userType});
 
   @override
   State<Signup> createState() => _SignupState();
@@ -107,38 +105,40 @@ class _SignupState extends State<Signup> {
                        ),
                        child: BlocBuilder<FlexiCubit,FlexiStates>(
                          builder: (context , state){
-                           return Column(
-                             crossAxisAlignment: CrossAxisAlignment.start,
-                             children: [
-                               buildTextFiledColum(cubit, context),
-                               const SizedBox(height: 35,),
-                               Center(
-                                 child: buildButton(
-                                     width: 380,
-                                     function: (){
-                                       if (formKey.currentState?.validate() ?? false) {
-                                         authCubit.signup(
-                                           name: nameController.text,
-                                           email: emailController.text,
-                                           password: passwordController.text,
-                                           dateOfBirth: dateController.text,
-                                           phoneNumber: phoneController.text,
-                                           type: userType,
-                                           gender: '',
-                                           age: '',
-                                           hospital: '',
-                                           nationalID: '',
-                                           verification: '',
-                                           follow: false,
-                                         );
-                                       }
-                                     },
-                                     text: 'SIGN UP',
-                                     textColor:const Color(0xff233a66),
-                                     color:const Color(0xffffd691)),
-                               ),
-                               buildSignUpRow(context),
-                             ],
+                           return SingleChildScrollView(
+                             child: Column(
+                               crossAxisAlignment: CrossAxisAlignment.start,
+                               children: [
+                                 buildTextFiledColum(cubit, context),
+                                 const SizedBox(height: 35,),
+                                 Center(
+                                   child: buildButton(
+                                       width: 380,
+                                       function: (){
+                                         if (formKey.currentState?.validate() ?? false) {
+                                           authCubit.signup(
+                                             name: nameController.text,
+                                             email: emailController.text,
+                                             password: passwordController.text,
+                                             dateOfBirth: dateController.text,
+                                             phoneNumber: phoneController.text,
+                                             type: userType,
+                                             gender: '',
+                                             age: '',
+                                             hospital: '',
+                                             nationalID: '',
+                                             verification: '',
+                                             follow: false,
+                                           );
+                                         }
+                                       },
+                                       text: 'SIGN UP',
+                                       textColor:const Color(0xff233a66),
+                                       color:const Color(0xffffd691)),
+                                 ),
+                                 buildSignUpRow(context),
+                               ],
+                             ),
                            );
                          },
                        ),
@@ -201,8 +201,8 @@ Widget buildTextFiledColum(FlexiCubit cubit, context){
                DateTime? pickedDate = await showDatePicker(
                  context: context,
                  initialDate: DateTime.now(),
-                 firstDate: DateTime.now(),
-                 lastDate: DateTime(2030, 12, 31),
+                 firstDate: DateTime(1940 , 12 , 12),
+                 lastDate: DateTime.now(),
                );
                if (pickedDate != null) {
                  dateController.text =

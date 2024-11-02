@@ -7,6 +7,8 @@ class AuthHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(MediaQuery.of(context).size.height );
+    print(MediaQuery.of(context).size.width);
     return Scaffold(
       backgroundColor:const Color(0xff233a66),
       body:
@@ -15,15 +17,15 @@ class AuthHome extends StatelessWidget {
               Stack(
                 children: [
                 buildTextColumn(),
-                const Positioned(
-                  top: 60,left: 0,right: 0,
+                Positioned(
+                  top: 0,left: 0,right: 0,bottom: MediaQuery.of(context).size.height * 0.3,
                   child: Image(image: AssetImage('asset/images/HandsUp.gif',),
                       width: 500,
                       height: 500,
                     ),
                 ),
                 Positioned(
-                  bottom: MediaQuery.of(context).size.height * 0.59,
+                  bottom: MediaQuery.of(context).size.height * 0.6,
                   left: 10,
                   right: 0,
                   child: Align(
@@ -41,7 +43,7 @@ class AuthHome extends StatelessWidget {
                           backgroundColor:const Color(0xffd7a859),
                           containerColor:const Color(0xffd7a859),
                         ),
-                        const SizedBox(width: 140),
+                        SizedBox(width: MediaQuery.of(context).size.width * 0.3),
                         buildOptionContainer(
                           function: (){
                             submit(context , "d");
