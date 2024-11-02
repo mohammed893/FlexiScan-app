@@ -21,38 +21,39 @@ class AnimationCubit extends Cubit<AnimationStates> {
 
   Map<String, Map<String, Tuple2<String, Duration>>> animationStates = {
     "error": {
-      "standBy": const Tuple2("assets/Error_Start.gif", Duration(milliseconds: 833)),
-      "Loop": const Tuple2("assets/Error_Start2.gif", Duration(milliseconds: 833)), // 3-second loop
-      "return": const Tuple2("assets/Error_Start 3.gif", Duration(milliseconds: 833))
+      "standBy": const Tuple2("asset/images/Error_Start.gif", Duration(milliseconds: 833)),
+      "Loop": const Tuple2("asset/images/Error_Start2.gif", Duration(milliseconds: 833)), // 3-second loop
+      "return": const Tuple2("asset/images/Error_Start 3.gif", Duration(milliseconds: 833))
     },
     "Selected": {
-      "standBy": const Tuple2("assets/Selected.gif", Duration(milliseconds: 833)),
-      "Loop": const Tuple2("assets/Selected 2.gif", Duration(milliseconds: 833)),
-      "return": const Tuple2("assets/Selected3.gif", Duration(milliseconds: 933))
+      "standBy": const Tuple2("asset/images/Selected.gif", Duration(milliseconds: 833)),
+      "Loop": const Tuple2("asset/images/Selected 2.gif", Duration(milliseconds: 833)),
+      "return": const Tuple2("asset/images/Selected3.gif", Duration(milliseconds: 933))
     },
     "Flying": {
-      "standBy": const Tuple2("assets/Fly1.gif", Duration(milliseconds: 667)),
-      "Loop": const Tuple2("assets/Fly2.gif", Duration(milliseconds: 633)),
-      "return": const Tuple2("assets/Fly2.gif", Duration(seconds: 1))
+      "standBy": const Tuple2("asset/images/Fly1.gif", Duration(milliseconds: 667)),
+      "Loop": const Tuple2("asset/images/Fly2.gif", Duration(milliseconds: 633)),
+      "return": const Tuple2("asset/images/Fly2.gif", Duration(seconds: 1))
     }
   };
 
-  String idleGif = "assets/Idle.gif";
+  String idleGif = "asset/images/Idle.gif";
   String currentState = "Idle";
-  String currentGIF = "assets/Idle.gif";
+  String currentGIF = "asset/images/Idle.gif";
+
 
   // Preload all GIFs
   void _preloadImages(BuildContext context) {
     // List of all image paths to preload
     List<String> imagePaths = [
-      "assets/Error_Start.gif",
-      "assets/Error_Start2.gif",
-      "assets/Error_Start 3.gif",
-      "assets/Selected.gif",
-      "assets/Selected 2.gif",
-      "assets/Selected3.gif",
-      "assets/Fly1.gif",
-      "assets/Fly2.gif",
+      "asset/images/Error_Start.gif",
+      "asset/images/Error_Start2.gif",
+      "asset/images/Error_Start 3.gif",
+      "asset/images/Selected.gif",
+      "asset/images/Selected 2.gif",
+      "asset/images/Selected3.gif",
+      "asset/images/Fly1.gif",
+      "asset/images/Fly2.gif",
       idleGif,
     ];
 
@@ -111,3 +112,4 @@ class AnimationCubit extends Cubit<AnimationStates> {
     }
   }
 }
+
