@@ -6,6 +6,7 @@ import 'package:flexiscan101/Patient/Cubit/cubit.dart';
 import 'package:flexiscan101/Patient/Cubit/states.dart';
 import 'package:flexiscan101/animation_module/cubit.dart';
 import 'package:flexiscan101/animation_module/states.dart';
+import 'package:flexiscan101/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -264,7 +265,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
         await Future.delayed(const Duration(milliseconds: 900));
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => Signup(userType: userType,)),
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
         );
       }else{
         if(authCubit.state is AuthLoginErrorState){

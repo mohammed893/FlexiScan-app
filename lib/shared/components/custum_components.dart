@@ -1,10 +1,10 @@
 // shared/components/custum_components.dart
 import 'package:flutter/material.dart';
-import 'package:physical_theraby/shared/app_cubit/app_cubit.dart';
-import 'package:physical_theraby/shared/network/local/cache_helper.dart';
 import 'dart:ui' as ui;
 
-import 'package:physical_theraby/shared/styles/colors.dart';
+
+import '../app_cubit/app_cubit.dart';
+import '../styles/colors.dart';
 
 // Helper function to build a grid item with animation on hover
 Widget buildAnimatedGridItem({

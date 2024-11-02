@@ -1,7 +1,8 @@
 // shared/styles/theme.dart
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:physical_theraby/shared/styles/colors.dart';
+
+import 'colors.dart';
 
 
 ThemeData lightTheme= ThemeData(

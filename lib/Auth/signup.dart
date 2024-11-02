@@ -8,7 +8,7 @@ import 'package:flexiscan101/Auth/auth_cubit/cubit.dart';
 import 'package:flexiscan101/Auth/auth_cubit/states.dart';
 import 'package:flexiscan101/Patient/Cubit/cubit.dart';
 import 'package:flexiscan101/Patient/Cubit/states.dart';
-import 'package:flexiscan101/Auth/auth_home.dart';
+import 'package:flexiscan101/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -61,7 +61,7 @@ class _SignupState extends State<Signup> {
                    if (state.signupModel.token!= null){
                      print("Token: ${state.signupModel.token}");
                      Navigator.pushAndRemoveUntil(context,
-                       MaterialPageRoute(builder: (context)=>const AuthHome(),
+                       MaterialPageRoute(builder: (context)=>const HomeScreen(),
                        ),
                            (Route<dynamic >route)=> false,
                      );

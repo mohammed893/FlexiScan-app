@@ -2,6 +2,7 @@ import 'package:flexiscan101/Components/custom/custom_appbar.dart';
 import 'package:flexiscan101/Auth/auth_home.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import '../Network/cache_helper.dart';
 import 'on_boarding_model.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -138,6 +139,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   );
 
   void submit(){
+    CachHelper.putBool(key: 'onboarding', value: true);
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
