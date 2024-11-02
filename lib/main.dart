@@ -1,32 +1,33 @@
-import 'package:flexiscan101/BluetoothScan/Bluetooth_Scan.dart';
-import 'package:flexiscan101/animation_module/login_screen.dart';
+import 'package:flexiscan101/Network/dio_helper.dart';
+import 'package:flexiscan101/On%20Boarding/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
+
+
+
+Future<void> initializeApp() async {
+  await Future.delayed(const Duration(milliseconds: 200));
+}
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  DioHelper.init();
+
   runApp(const MyApp());
   
 }
-//hello world
-
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
-
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home:  LoginScreen()//const MyHomePage(title: 'Flutter Demo Home Page'),
+    return const MaterialApp(
+      title: 'FlEXI_SCAN',
+      debugShowCheckedModeBanner: false,
+      home:   OnBoardingScreen(),
     );
   }
 }

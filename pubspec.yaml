@@ -32,15 +32,17 @@ dependencies:
     sdk: flutter
 
 
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  flutter_bluetooth_serial: any
   font_awesome_flutter: ^10.4.0
   bloc: ^8.1.4
   flutter_bloc: ^8.1.6
   dio: ^5.7.0
+  smooth_page_indicator: ^1.2.0+3
   tuple: ^2.0.0
+  fluttertoast: ^8.2.8
 
 
 dev_dependencies:
@@ -67,23 +69,23 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/Idle.gif
-    - assets/Fly1.gif
-    - assets/Fly2.gif
-    - assets/Selected.gif
-    - assets/Selected 2.gif
-    - assets/Selected3.gif
-    - assets/Error_Start.gif
-    - assets/Error_Start2.gif
-    - assets/Error_Start 3.gif
+    - asset/images/Idle.gif
+    - asset/images/Fly1.gif
+    - asset/images/Fly2.gif
+    - asset/images/Selected.gif
+    - asset/images/Selected 2.gif
+    - asset/images/Selected3.gif
+    - asset/images/Error_Start.gif
+    - asset/images/Error_Start2.gif
+    - asset/images/Error_Start 3.gif
+    - asset/images/Removal-683.png
+    - asset/images/Doctor.png
+    - asset/images/Patient.png
+    - asset/images/Pointing.gif
+    - asset/images/LookingUp.gif
+    - asset/images/LookingDown.gif
+    - asset/images/HandsUp.gif
 
-    
-
-
-
-
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
