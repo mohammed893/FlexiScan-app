@@ -7,3 +7,4 @@ class StagingNewState extends AnimationStates {}
 class LoopState extends AnimationStates {}
 
 class IdleState extends AnimationStates{}
+

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 
 
+
 Future<void> initializeApp() async {
   await Future.delayed(const Duration(milliseconds: 200));
 }
@@ -12,6 +13,7 @@ void main() {
   DioHelper.init();
 
   runApp(const MyApp());
+  
 }
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
