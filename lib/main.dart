@@ -1,4 +1,5 @@
 import 'package:flexiscan101/Auth/auth_home.dart';
+import 'package:flexiscan101/Doctor/doctor_home.dart';
 import 'package:flexiscan101/Network/dio_helper.dart';
 import 'package:flexiscan101/On%20Boarding/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,10 @@ final bool onboardingcompleted;
             theme: lightTheme,
             darkTheme: darkTheme,
             themeMode:  AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
-            home: onboardingcompleted ? const AuthHome() : const OnBoardingScreen(),
+            home:
+            DoctorHome()
+
+            //onboardingcompleted ? const AuthHome() : const OnBoardingScreen(),
           );
         },
       ),

@@ -6,6 +6,10 @@ AppBar  appbar({
   backGroundColor,
   textButtonColor,
   VoidCallback? onPressed,
+  VoidCallback? notiOnPressed,
+  VoidCallback? menuOnPressed,
+  leadingIcon,
+  notiIcon,
 }
     ){
   return AppBar(
@@ -28,7 +32,21 @@ AppBar  appbar({
           ),),
       style: TextButton.styleFrom(
         backgroundColor: backGroundColor,
-      ))
+      )),
+    IconButton(
+        onPressed: notiOnPressed,
+        icon: Icon(notiIcon,
+          color:Color(0xffd7a859) ,
+          size: 35,
+        ),
+    ),
     ],
+    leading: IconButton(
+        onPressed: menuOnPressed,
+        icon: Icon( leadingIcon,
+          color:const Color(0xffd7a859),
+          size: 35,
+        ),
+    ),
   );
 }

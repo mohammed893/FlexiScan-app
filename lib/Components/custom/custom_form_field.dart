@@ -11,7 +11,7 @@ Widget buildFormFiled({
   VoidCallback ? suffixPressed,
   color,
   iconColor,
-
+  ValueChanged<String>? onChanged,
   VoidCallback ? onTap,
 })=>TextFormField(
   obscureText: obscure,
@@ -42,5 +42,6 @@ Widget buildFormFiled({
   ),
   ),
   onTap: onTap,
+  onChanged:onChanged ,
 );
 

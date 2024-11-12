@@ -22,5 +22,16 @@ abstract class AppStates {}
   }
  class OnBoardingFinishedState extends AppStates {}
 
+class NewsGetSearchLoadingState extends AppStates{}
+
+class GetSearchSuccessState extends AppStates{}
+
+class GetSearchErrorState extends AppStates{
+  final String error;
+  GetSearchErrorState(this.error);
+
+}
+
+
   
 
