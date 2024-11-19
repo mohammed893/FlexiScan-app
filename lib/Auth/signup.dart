@@ -1,3 +1,4 @@
+// Auth/signup.dart
 
 import 'package:flexiscan101/Components/custom/custom_button.dart';
 import 'package:flexiscan101/Components/custom/custom_formfield.dart';
@@ -8,7 +9,7 @@ import 'package:flexiscan101/Auth/auth_cubit/cubit.dart';
 import 'package:flexiscan101/Auth/auth_cubit/states.dart';
 import 'package:flexiscan101/Patient/Cubit/cubit.dart';
 import 'package:flexiscan101/Patient/Cubit/states.dart';
-import 'package:flexiscan101/screens/home_screen.dart';
+import 'package:flexiscan101/Patient/home_patient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -59,7 +60,7 @@ class _SignupState extends State<Signup> {
                    if (state.signupModel.token!= null){
                      print("Token: ${state.signupModel.token}");
                      Navigator.pushAndRemoveUntil(context,
-                       MaterialPageRoute(builder: (context)=>const HomeScreen(),
+                       MaterialPageRoute(builder: (context) =>  PatientHome(), ///////////////////////////// patient for testing 
                        ),
                            (Route<dynamic >route)=> false,
                      );

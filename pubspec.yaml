@@ -16,6 +16,7 @@ dependencies:
   bloc: ^8.1.4
   flutter_bloc: ^8.1.6
   dio: ^5.7.0
+  flutter_local_notifications: ^14.0.0
   smooth_page_indicator: ^1.2.0+3
   tuple: ^2.0.0
   sqflite: ^2.3.3+1
@@ -24,6 +25,7 @@ dependencies:
   shared_preferences: ^2.3.2
   flutter_secure_storage: ^9.2.2
   fluttertoast: ^8.2.8
+  carousel_slider: ^5.0.0
 
 dev_dependencies:
   flutter_test:

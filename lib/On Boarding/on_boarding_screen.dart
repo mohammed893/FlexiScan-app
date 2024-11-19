@@ -1,5 +1,6 @@
-import 'package:flexiscan101/Components/custom/custom_appbar.dart';
+// On Boarding/on_boarding_screen.dart
 import 'package:flexiscan101/Auth/auth_home.dart';
+import 'package:flexiscan101/Components/custom/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../Network/cache_helper.dart';
