@@ -1,3 +1,4 @@
+// Network/dio_helper.dart
 import 'package:dio/dio.dart';
 
 class DioHelper{
@@ -22,5 +23,13 @@ class DioHelper{
       data: data,
 
     );
+  }
+
+  static Future<Response> getData({
+    required String url,
+  }) async{
+    return await  dio.get(
+      url,
+       );
   }
 }

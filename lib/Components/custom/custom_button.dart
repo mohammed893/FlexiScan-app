@@ -1,3 +1,4 @@
+// Components/custom/custom_button.dart
 import 'package:flutter/material.dart';
 
 Widget buildButton({
@@ -6,7 +7,7 @@ Widget buildButton({
   required String text,
   required color,
   textColor,
-  height,
+ double height= 30,
   bool loading = false
 }) => Container(
   width: width,

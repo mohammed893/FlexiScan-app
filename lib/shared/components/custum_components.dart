@@ -17,7 +17,7 @@ Widget buildAnimatedGridItem({
   return Padding(
     padding: const EdgeInsets.all(16.0),
     child: AnimatedScale(
-      scale: 1.05, // Adjust the scale for a slight zoom effect
+      scale: 1.05,
       duration: const Duration(milliseconds: 300),
       child: Container(
         width: 100,
@@ -54,21 +54,24 @@ Widget buildAnimatedGridItem({
 Widget greetingItem({
   required String username,
   required BuildContext context,
-  required ImageProvider userimage,
+  required AssetImage userImage,
 }) {
   return Row(
     children: [
-      CircleAvatar(
-        radius: 40,
-        backgroundImage: userimage,
+       Container(
+        width: 110,
+        height: 150,
+        child: Image.asset('asset/images/Pointing.gif',),
       ),
-      SizedBox(width: 30),
+     
+      SizedBox(width: 20),
+
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'Welcome back',
-            style: Theme.of(context).textTheme.titleMedium,
+            style: Theme.of(context).textTheme.headlineSmall,
           ),
           AnimatedOpacity(
             opacity: 1.0,
@@ -79,6 +82,11 @@ Widget greetingItem({
             ),
           ),
         ],
+      ),
+     SizedBox( width: 20,),
+      CircleAvatar(
+        radius: 30,
+        backgroundImage: userImage,
       ),
     ],
   );
@@ -141,3 +149,4 @@ class RPSCustomPainter extends CustomPainter {
     return false;
   }
 }
+

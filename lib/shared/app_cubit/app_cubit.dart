@@ -4,7 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Network/cache_helper.dart';
+import '../../../../Network/cache_helper.dart';
+import '../../../../Network/dio_helper.dart';
 import 'app_states.dart';
 
 
@@ -52,5 +53,19 @@ class AppCubit extends Cubit<AppStates> {
   }
 
 
+  List<dynamic> search = [];
+  void getSearch(String value){
+    emit(NewsGetSearchLoadingState());
+    DioHelper.getData(url: '',
+       ).then((value){
+      search = value.data[''];
+      print(search.length);
+      emit(GetSearchSuccessState());
 
+    }).catchError((error){
+      print(error.toString());
+      emit(GetSearchErrorState(error.toString()));
+
+    });
+  }
 }

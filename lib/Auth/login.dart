@@ -1,12 +1,13 @@
+// Auth/login.dart
 import 'package:flexiscan101/Components/custom/custom_button.dart';
 import 'package:flexiscan101/Auth/signup.dart';
 import 'package:flexiscan101/Auth/auth_cubit/cubit.dart';
 import 'package:flexiscan101/Auth/auth_cubit/states.dart';
 import 'package:flexiscan101/Patient/Cubit/cubit.dart';
 import 'package:flexiscan101/Patient/Cubit/states.dart';
+import 'package:flexiscan101/Patient/home_patient.dart';
 import 'package:flexiscan101/animation_module/cubit.dart';
 import 'package:flexiscan101/animation_module/states.dart';
-import 'package:flexiscan101/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -265,7 +266,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
         await Future.delayed(const Duration(milliseconds: 900));
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
+          MaterialPageRoute(builder: (context) =>  PatientHome()), /////////////////// patient for test 
         );
       }else{
         if(authCubit.state is AuthLoginErrorState){
