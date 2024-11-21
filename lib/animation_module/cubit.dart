@@ -1,6 +1,8 @@
 import 'package:flexiscan101/animation_module/states.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rive/rive.dart';
 import 'package:tuple/tuple.dart';
 
 class AnimationCubit extends Cubit<AnimationStates> {
@@ -18,7 +20,7 @@ class AnimationCubit extends Cubit<AnimationStates> {
   void dispose() {
     _animationController.dispose();
   }
-
+  // -----------Old Animation Module (Not rely on Riv or .riv) ------------ (sanabl / Habiba Don't delete this)
   Map<String, Map<String, Tuple2<String, Duration>>> animationStates = {
     "error": {
       "standBy": const Tuple2("asset/images/Error_Start.gif", Duration(milliseconds: 833)),
@@ -111,5 +113,66 @@ class AnimationCubit extends Cubit<AnimationStates> {
       emit(IdleState());
     }
   }
+  //-----------------------The New Module of animation Using Rive (.riv file)----------//
+  Artboard? riveArtBoard;
+  SMIBool? isFly;
+  SMIBool? isError;
+  SMIBool? isLookingDown;
+  SMIBool? isSkin;
+  String animaState = "Idle";
+  late Map<String , SMIBool?> animaStates = {"Fly" : isFly ,
+   "Error":isError ,
+   "Selected" : isLookingDown 
+    };
+  Future<void> loadRiveFile () async {
+    emit(LoadingFileState());
+    await RiveFile.initialize();
+    try {
+      final data = await rootBundle.load('assets/test.riv');
+      final file = RiveFile.import(data);
+      final artboard = file.mainArtboard;
+      var controller = StateMachineController.fromArtboard(artboard, "Motion");
+      if(controller != null){
+        artboard.addController(controller);
+        isFly = controller.findSMI('Fly');
+        isError = controller.findSMI('Error');
+        isLookingDown = controller.findSMI('Looking Down');
+        isSkin = controller.findSMI('Skin');
+      }
+      riveArtBoard = artboard;
+      emit(LoadedFileState());
+    }catch(e) {
+      print("error in initializing Rive File ${e}");
+    }
+  }
+
+   void toggleInput(SMIBool? input) {
+    if (input != null) {
+      input.value = !input.value;
+      emit(ToggleState());
+    }
+  }
+
+  void toggleAnimation(String stateName){
+    if(animaState != stateName){
+      if(stateName != "Idle"){
+        toggleInput(animaStates[animaState]);
+        animaState = "Idle";
+              print(animaState);
+
+      }
+      toggleInput(animaStates[stateName]);
+      animaState = stateName;
+            print(animaState);
+
+    }
+    if(animaState != "Idle"){
+      toggleInput(animaStates[animaState]);
+        animaState = "Idle";
+              print(animaState);
+
+    }
+  }
+
 }
 

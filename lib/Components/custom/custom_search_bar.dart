@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Search extends StatelessWidget {
-  Search({super.key});
+  final TextEditingController searchController;
+  Search({super.key , required this.searchController});
 
-  final searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,11 @@ class Search extends StatelessWidget {
               hintText: 'search',
               leading: Icon(Icons.search),
               onChanged:(value){
-                AppCubit.get(context).getSearch(value);
+                // print(value);
+                // AppCubit.get(context).getSearch(value);
+              },
+              onSubmitted: (value) {
+                print(value);
               },
             ),
                 if (state is GetSearchSuccessState)

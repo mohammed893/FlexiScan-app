@@ -22,12 +22,12 @@ Widget buildHomeItem({
         children: [
           const SizedBox(height: 10,),
           Icon(icon,
-            color: Color(0xff233a66),
+            color: const Color(0xff233a66),
             size: 45,
           ),
           const SizedBox(height: 15,),
            Text(text,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -48,7 +48,7 @@ Widget buildRowHomeItem(){
           backGroundColor:const Color(0xffd7a859),
         text: 'Sessions',
         icon: Icons.accessibility_new,
-        iconColor: Colors.green,
+        iconColor: Colors.green.withOpacity(0.9),
         onTap: (){}
       ),
       const SizedBox(width: 10,),
@@ -57,6 +57,7 @@ Widget buildRowHomeItem(){
           text: 'Schedule',
           icon: Icons.schedule,
           iconColor: Colors.green,
+        
           onTap: (){}
       ),     const SizedBox(width: 10,),
       buildHomeItem(

@@ -2,14 +2,17 @@ import 'package:flexiscan101/Auth/auth_home.dart';
 import 'package:flexiscan101/Doctor/doctor_home.dart';
 import 'package:flexiscan101/Network/dio_helper.dart';
 import 'package:flexiscan101/On%20Boarding/on_boarding_screen.dart';
+import 'package:flexiscan101/screens/ai_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rive/rive.dart';
 import 'Network/cache_helper.dart';
 import 'shared/app_cubit/app_cubit.dart';
 import 'shared/app_cubit/app_states.dart';
 import 'shared/styles/theme.dart';
 
 void main() async {
+  RiveFile.initialize();
   WidgetsFlutterBinding.ensureInitialized();
   DioHelper.init();
   await CachHelper.init();
@@ -22,6 +25,7 @@ void main() async {
 
 
 class MyApp extends StatelessWidget {
+TextEditingController searchController = TextEditingController();
 final bool isDark;
 final bool onboardingcompleted;
   MyApp({required this.isDark, required this.onboardingcompleted});
@@ -42,9 +46,10 @@ final bool onboardingcompleted;
             darkTheme: darkTheme,
             themeMode:  AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
             home:
-            DoctorHome()
+            AIScreen()
+            // DoctorHome(searchController:searchController ,)
 
-            //onboardingcompleted ? const AuthHome() : const OnBoardingScreen(),
+            // onboardingcompleted ? const AuthHome() : const OnBoardingScreen(),
           );
         },
       ),

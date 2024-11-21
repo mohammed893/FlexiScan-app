@@ -5,11 +5,14 @@ import '../Components/custom/custom_home_item.dart';
 import '../Components/custom/custom_search_bar.dart';
 
 class DoctorHome extends StatelessWidget {
-   const DoctorHome({super.key});
+  final TextEditingController searchController;
+  DoctorHome({super.key , required this.searchController});
+  
 
    @override
    Widget build(BuildContext context) {
      return Scaffold(
+      resizeToAvoidBottomInset: false,
        backgroundColor: Colors.white,
          appBar: appbar(title: '',
            menuOnPressed: (){},
@@ -21,7 +24,7 @@ class DoctorHome extends StatelessWidget {
          body: Column(
            mainAxisAlignment: MainAxisAlignment.end,
            children: [
-             Search(),
+            Search(searchController: searchController,),
             buildContainer(),
            ],
          ),
@@ -31,7 +34,7 @@ class DoctorHome extends StatelessWidget {
    Widget buildContainer(){
      return Container(
        width: double.infinity,
-       height: 500,
+       height: 450,
        decoration:const BoxDecoration(
          borderRadius: BorderRadius.only(
            topLeft: Radius.circular(40),
