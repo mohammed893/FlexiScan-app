@@ -204,10 +204,10 @@ packages:
     dependency: "direct main"
     description:
       name: font_awesome_flutter
-      sha256: "275ff26905134bcb59417cf60ad979136f1f8257f2f449914b2c3e05bbb4cd6f"
+      sha256: d3a89184101baec7f4600d58840a764d2ef760fe1c5a20ef9e6b0e9b24a07a3a
       url: "https://pub.dev"
     source: hosted
-    version: "10.7.0"
+    version: "10.8.0"
   graphs:
     dependency: transitive
     description:
@@ -396,10 +396,10 @@ packages:
     dependency: "direct main"
     description:
       name: rive
-      sha256: "0e0db2ae15f7c69880ccd7cbcc072418f8585e0138a715f6ebd07f2a03732e14"
+      sha256: b44b62feb908610ca6c85e05f4573a66118a23867425926cf06152d171236141
       url: "https://pub.dev"
     source: hosted
-    version: "0.13.16"
+    version: "0.13.17"
   rive_common:
     dependency: transitive
     description:
@@ -412,10 +412,10 @@ packages:
     dependency: "direct main"
     description:
       name: shared_preferences
-      sha256: "746e5369a43170c25816cc472ee016d3a66bc13fcf430c0bc41ad7b4b2922051"
+      sha256: "95f9997ca1fb9799d494d0cb2a780fd7be075818d59f00c43832ed112b158a82"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.2"
+    version: "2.3.3"
   shared_preferences_android:
     dependency: transitive
     description:
@@ -489,10 +489,10 @@ packages:
     dependency: "direct main"
     description:
       name: sqflite
-      sha256: "79a297dc3cc137e758c6a4baf83342b039e5a6d2436fcdf3f96a00adaaf2ad62"
+      sha256: "2d7299468485dca85efeeadf5d38986909c5eb0cd71fd3db2c2f000e6c9454bb"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.0"
+    version: "2.4.1"
   sqflite_android:
     dependency: transitive
     description:
@@ -513,10 +513,10 @@ packages:
     dependency: transitive
     description:
       name: sqflite_darwin
-      sha256: "769733dddf94622d5541c73e4ddc6aa7b252d865285914b6fcd54a63c4b4f027"
+      sha256: "96a698e2bc82bd770a4d6aab00b42396a7c63d9e33513a56945cbccb594c2474"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.1-1"
+    version: "2.4.1"
   sqflite_platform_interface:
     dependency: transitive
     description:
@@ -617,10 +617,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: "10169d3934549017f0ae278ccb07f828f9d6ea21573bab0fb77b0e1ef0fce454"
+      sha256: "84ba388638ed7a8cb3445a320c8273136ab2631cd5f2c57888335504ddab1bc2"
       url: "https://pub.dev"
     source: hosted
-    version: "5.7.2"
+    version: "5.8.0"
   xdg_directories:
     dependency: transitive
     description:

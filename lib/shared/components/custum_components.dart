@@ -83,8 +83,6 @@ Widget greetingItem({
     ],
   );
 }
-        
-
 
 class CurvedDivider extends StatelessWidget {
   @override

@@ -1,21 +1,20 @@
+// main.dart
 import 'package:flexiscan101/Auth/auth_home.dart';
 import 'package:flexiscan101/Doctor/doctor_home.dart';
 import 'package:flexiscan101/Network/dio_helper.dart';
 import 'package:flexiscan101/On%20Boarding/on_boarding_screen.dart';
-import 'package:flexiscan101/screens/ai_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rive/rive.dart';
 import 'Network/cache_helper.dart';
 import 'shared/app_cubit/app_cubit.dart';
 import 'shared/app_cubit/app_states.dart';
 import 'shared/styles/theme.dart';
 
 void main() async {
-  RiveFile.initialize();
   WidgetsFlutterBinding.ensureInitialized();
   DioHelper.init();
   await CachHelper.init();
+
   CachHelper.putBool(key: 'onboarding', value: false); // just for testing 
   bool isDark = CachHelper.getData(key: 'isDark');
   bool onboarding = CachHelper.getData(key: 'onboarding' );
@@ -25,7 +24,6 @@ void main() async {
 
 
 class MyApp extends StatelessWidget {
-TextEditingController searchController = TextEditingController();
 final bool isDark;
 final bool onboardingcompleted;
   MyApp({required this.isDark, required this.onboardingcompleted});
@@ -34,8 +32,10 @@ final bool onboardingcompleted;
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AppCubit()..changeAppMode( currentModeFromPrefs: isDark )
+          create: (context) => AppCubit()..changeAppMode( currentModeFromPrefs: isDark ),
+          
         ),
+
       ],
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
@@ -45,11 +45,7 @@ final bool onboardingcompleted;
             theme: lightTheme,
             darkTheme: darkTheme,
             themeMode:  AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
-            home:
-            AIScreen()
-            // DoctorHome(searchController:searchController ,)
-
-            // onboardingcompleted ? const AuthHome() : const OnBoardingScreen(),
+            home: const OnBoardingScreen(),
           );
         },
       ),
