@@ -2,6 +2,7 @@ import 'package:flexiscan101/Auth/auth_home.dart';
 import 'package:flexiscan101/Doctor/doctor_home.dart';
 import 'package:flexiscan101/Network/dio_helper.dart';
 import 'package:flexiscan101/On%20Boarding/on_boarding_screen.dart';
+import 'package:flexiscan101/Online-Sessions/index.dart';
 import 'package:flexiscan101/screens/ai_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,9 +47,9 @@ final bool onboardingcompleted;
             darkTheme: darkTheme,
             themeMode:  AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
             home:
-            AIScreen()
+            // AIScreen()
             // DoctorHome(searchController:searchController ,)
-
+            OnlineSessionsIndex()
             // onboardingcompleted ? const AuthHome() : const OnBoardingScreen(),
           );
         },
