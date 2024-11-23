@@ -26,7 +26,8 @@ dependencies:
   fluttertoast: ^8.2.8
   carousel_slider: ^5.0.0
   rive: ^0.13.16
-  agora_rtc_engine: 5.2.0 
+  agora_rtc_engine: ^6.3.2
+  
   permission_handler:
 
 

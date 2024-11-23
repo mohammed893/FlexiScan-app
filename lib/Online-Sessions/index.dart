@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:flexiscan101/Online-Sessions/Call.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -14,7 +13,6 @@ class OnlineSessionsIndex extends StatefulWidget {
 class _OnlineSessionsIndexState extends State<OnlineSessionsIndex> {
   final _channelController = TextEditingController();
   bool _validateError = false;
-  ClientRole? _role = ClientRole.Broadcaster;
   @override
   void dispose (){
     _channelController.dispose();
@@ -45,24 +43,24 @@ class _OnlineSessionsIndexState extends State<OnlineSessionsIndex> {
                 hintText: 'Channel name'
               ),
               ),
-              RadioListTile(value: ClientRole.Broadcaster,
-              title: const Text('BroadCaster'),
-               groupValue: _role,
-                onChanged: (ClientRole? val){
-                  setState(() {
-                    _role = val;
-                  });
-                }
-                ),
-                RadioListTile(value: ClientRole.Audience,
-              title: const Text('Audience'),
-               groupValue: _role,
-                onChanged: (ClientRole? val){
-                  setState(() {
-                    _role = val;
-                  });
-                }
-                ),
+              // RadioListTile(value: ClientRole.Broadcaster,
+              // title: const Text('BroadCaster'),
+              //  groupValue: _role,
+              //   onChanged: (ClientRole? val){
+              //     setState(() {
+              //       _role = val;
+              //     });
+              //   }
+              //   ),
+              //   RadioListTile(value: ClientRole.Audience,
+              // title: const Text('Audience'),
+              //  groupValue: _role,
+              //   onChanged: (ClientRole? val){
+              //     setState(() {
+              //       _role = val;
+              //     });
+              //   }
+              //   ),
                 ElevatedButton(onPressed: onJoin,
                  child: const Text('join'),
                 style: ElevatedButton.styleFrom(minimumSize: const Size(
@@ -88,7 +86,7 @@ class _OnlineSessionsIndexState extends State<OnlineSessionsIndex> {
       Navigator.push(context,
        MaterialPageRoute(
         builder: (context)=>CallPage(channelName: _channelController.text,
-        role: _role,)
+        )
         )
         );
     }
