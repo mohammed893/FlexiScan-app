@@ -1,11 +1,22 @@
+
 import 'package:flexiscan101/Patient/Cubit/states.dart';
+import 'package:flexiscan101/Patient/NavScreens/devices.dart';
+import 'package:flexiscan101/Patient/NavScreens/exercises.dart';
+import 'package:flexiscan101/Patient/NavScreens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FlexiCubit extends Cubit<FlexiStates>{
-  FlexiCubit(): super (FlexiInitialState());
+  FlexiCubit(): super (FlexiInitialState()){
+    TextEditingController searchController = TextEditingController();
+    screens = [
+      PatientHome(searchController: searchController),
+      const Exercises(),
+      const Devices(),
+    ];
+  }
   static FlexiCubit get(context) =>BlocProvider.of(context);
-
+  late TextEditingController searchController;
 
   bool isPassword = true;
   IconData suffix = Icons.visibility;
@@ -44,8 +55,23 @@ class FlexiCubit extends Cubit<FlexiStates>{
     isFollowNo= true;
     isFollowYes= false;
     emit(FlexiFollowNo());
+
+  }
+  double rateValue = 0.0;
+  void updateRate(double newRate){
+    rateValue = newRate;
+    emit(FlexiRateUpdatedState());  }
+
+  double rate(){
+    return rateValue;
   }
 
 
+  List<Widget> screens = [];
+  int currentIndex = 0;
+  void changeIndex(int index){
+    currentIndex = index;
+    emit(ChangeIndex());
+  }
 
 }

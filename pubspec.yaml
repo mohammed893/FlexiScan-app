@@ -7,7 +7,6 @@ version: 1.0.0+1
 
 environment:
   sdk: '>=3.4.3 <4.0.0'
-
 dependencies:
   flutter:
     sdk: flutter
@@ -28,7 +27,7 @@ dependencies:
   rive: ^0.13.16
   agora_rtc_engine: ^6.3.2
   flutter_blue_plus: ^1.34.5
-  permission_handler:
+  permission_handler: ^11.3.1
 
 
 dev_dependencies:
