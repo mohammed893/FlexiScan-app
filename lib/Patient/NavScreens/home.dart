@@ -59,7 +59,7 @@ class PatientHome extends StatelessWidget {
     required BuildContext context
   }){
     final model = RecommendedModel(
-      name: "Mohammed ",
+      name: "Dr.Mohammed ",
       image: 'asset/images/profile.png',
       rate: 4.5,
     );
