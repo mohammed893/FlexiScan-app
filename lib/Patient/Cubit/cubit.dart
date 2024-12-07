@@ -14,6 +14,7 @@ class FlexiCubit extends Cubit<FlexiStates>{
       const Exercises(),
       const Devices(),
     ];
+
   }
   static FlexiCubit get(context) =>BlocProvider.of(context);
   late TextEditingController searchController;
@@ -67,11 +68,24 @@ class FlexiCubit extends Cubit<FlexiStates>{
   }
 
 
-  List<Widget> screens = [];
+
   int currentIndex = 0;
+  List<Widget> screens = [];
+  List<Map> home = [];
+  List<Map> exercises = [];
+  List<Map> devices = [];
+  List<Map> screen = [];
+
+
   void changeIndex(int index){
     currentIndex = index;
     emit(ChangeIndex());
   }
 
-}
+  }
+
+
+
+
+
+

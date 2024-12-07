@@ -34,20 +34,13 @@ class PatientHome extends StatelessWidget {
             return navigationBar(flexi);
           },
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              welcomeRow(),
-              Search(searchController: searchController,),
-              buildContainer(
-                text: "",
-                iconText: 'chat',
-                icon: Icons.change_history_rounded,
-                context: context,
-              ),
-            ],
-          ),
+        body: BlocBuilder<FlexiCubit, FlexiStates>(
+          builder: (context, state) {
+            FlexiCubit flexi = FlexiCubit.get(context);
+            return flexi.screens[flexi.currentIndex];
+          },
         ),
+
       ),
     );
   }
@@ -109,86 +102,83 @@ class PatientHome extends StatelessWidget {
   }
   Widget buildAppointmentContainer(RecommendedModel model){
     return
-      BlocProvider(
-        create: (context)=>FlexiCubit(),
-        child: CarouselSlider(
-          items: [
-            Container(
-              width: 250,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20)
-              ),
-              child: Column(
-                children: [
-                  Padding(
-                    padding:const EdgeInsets.only(top: 20),
-                    child: Image(image: AssetImage(model.image),
-                      height: 100,
-                    ),
-                  ),
-                  const SizedBox(height: 30,),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(model.name,
-                        style:const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 5,),
-                      BlocBuilder<FlexiCubit,FlexiStates>(
-                        builder: (context , state){
-                          return  RatingBar.builder(
-                            itemBuilder: (context, _) =>const Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                            ),
-                            minRating: 0,
-                            maxRating: 5,
-                            allowHalfRating: true,
-                            direction: Axis.horizontal,
-                            initialRating:model.rate,
-                            onRatingUpdate: (newRate) {
-                              FlexiCubit.get(context).updateRate(newRate);
-                            },
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-
-                  const SizedBox(height: 20,),
-                  Row(
-                    mainAxisAlignment:MainAxisAlignment.end,
-                    children: [
-                      buildButton(
-                          color:const Color(0xff233a66),
-                          text: 'Book Now',
-                          width: 120.0,
-                          function: (){},
-                          textColor: Colors.white,
-                          height: 50.0,
-                          loading: false
-                      ),
-                    ],
-                  )
-                ],
-              ),
+      CarouselSlider(
+        items: [
+          Container(
+            width: 250,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20)
             ),
-          ],
-          options: CarouselOptions(
-            initialPage: 0,
-            enableInfiniteScroll: true,
-            reverse: false,
-            autoPlayAnimationDuration:const Duration(seconds: 1),
-            autoPlayInterval:const Duration(seconds: 4),
-            autoPlayCurve: Curves.fastOutSlowIn,
-            scrollDirection: Axis.horizontal,
-            viewportFraction: 0.65,
-            height: 320,
+            child: Column(
+              children: [
+                Padding(
+                  padding:const EdgeInsets.only(top: 20),
+                  child: Image(image: AssetImage(model.image),
+                    height: 100,
+                  ),
+                ),
+                const SizedBox(height: 30,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(model.name,
+                      style:const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 5,),
+                    BlocBuilder<FlexiCubit,FlexiStates>(
+                      builder: (context , state){
+                        return  RatingBar.builder(
+                          itemBuilder: (context, _) =>const Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                          minRating: 0,
+                          maxRating: 5,
+                          allowHalfRating: true,
+                          direction: Axis.horizontal,
+                          initialRating:model.rate,
+                          onRatingUpdate: (newRate) {
+                            FlexiCubit.get(context).updateRate(newRate);
+                          },
+                        );
+                      },
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 20,),
+                Row(
+                  mainAxisAlignment:MainAxisAlignment.end,
+                  children: [
+                    buildButton(
+                        color:const Color(0xff233a66),
+                        text: 'Book Now',
+                        width: 120.0,
+                        function: (){},
+                        textColor: Colors.white,
+                        height: 50.0,
+                        loading: false
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
+        ],
+        options: CarouselOptions(
+          initialPage: 0,
+          enableInfiniteScroll: true,
+          reverse: false,
+          autoPlayAnimationDuration:const Duration(seconds: 1),
+          autoPlayInterval:const Duration(seconds: 4),
+          autoPlayCurve: Curves.fastOutSlowIn,
+          scrollDirection: Axis.horizontal,
+          viewportFraction: 0.65,
+          height: 320,
         ),
       );
   }

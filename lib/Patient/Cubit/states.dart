@@ -17,3 +17,6 @@ class SelectIcon extends FlexiStates{}
 class FlexiRateUpdatedState extends FlexiStates{}
 
 class ChangeIndex extends FlexiStates{}
+
+class Screen2UpdatedState extends FlexiStates{}
+

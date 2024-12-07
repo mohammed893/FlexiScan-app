@@ -61,6 +61,8 @@ flutter:
     - assets/test.riv
     - asset/stickman.riv
     - asset/images/stickManBg.png
+    - asset/images/profile.png
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
