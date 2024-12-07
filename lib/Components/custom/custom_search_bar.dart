@@ -27,25 +27,24 @@ class Search extends StatelessWidget {
                 print(value);
               },
             ),
-                if (state is GetSearchSuccessState)
-            Expanded(
-              child: ListView.builder(
-                itemCount: AppCubit.get(context).search.length,
-                itemBuilder: (context, index) {
-                  AppCubit.get(context).search[index];
-                  return ListTile(
-                    title: Text( AppCubit.get(context).search[index]['title'] ?? 'No title'),
-                    subtitle: Text( AppCubit.get(context).search[index]['description'] ?? 'No description'),
-                  );
-                },
+            if (state is GetSearchSuccessState)
+              Expanded(
+                child: ListView.builder(
+                  itemCount: AppCubit.get(context).search.length,
+                  itemBuilder: (context, index) {
+                    AppCubit.get(context).search[index];
+                    return ListTile(
+                      title: Text( AppCubit.get(context).search[index]['title'] ?? 'No title'),
+                      subtitle: Text( AppCubit.get(context).search[index]['description'] ?? 'No description'),
+                    );
+                  },
+                ),
               ),
-            ),
-                  if (state is NewsGetSearchLoadingState)
-            Center(child: CircularProgressIndicator()),
-                ],
+            if (state is NewsGetSearchLoadingState)
+              Center(child: CircularProgressIndicator()),
+          ],
         );
       },
     );
   }
 }
-

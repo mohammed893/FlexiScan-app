@@ -15,13 +15,13 @@ Widget buildFormFiled({
   VoidCallback ? onTap,
 })=>TextFormField(
   obscureText: obscure,
-   validator: (value){
-     if(value == null ||value.isEmpty){
-       return validatorString ;
-     }
-     return null;
-   },
-   controller: controller ,
+  validator: (value){
+    if(value == null ||value.isEmpty){
+      return validatorString ;
+    }
+    return null;
+  },
+  controller: controller ,
   decoration: InputDecoration(
     labelText: label,
     labelStyle:const TextStyle(
@@ -33,13 +33,13 @@ Widget buildFormFiled({
     suffixIcon: IconButton(
       onPressed: suffixPressed,
       icon: Icon(suffix,
-      color: iconColor,
+        color: iconColor,
       ),),
     filled: true,
     fillColor: color,
     border: OutlineInputBorder(
-    borderRadius: BorderRadius.circular(radius),
-  ),
+      borderRadius: BorderRadius.circular(radius),
+    ),
   ),
   onTap: onTap,
   onChanged:onChanged ,
