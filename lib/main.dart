@@ -2,7 +2,13 @@
 
 import 'package:flexiscan101/Doctor/doctor_home.dart';
 import 'package:flexiscan101/Network/dio_helper.dart';
-import 'package:flexiscan101/Patient/NavScreens/home.dart';
+import 'package:flexiscan101/On%20Boarding/on_boarding_screen.dart';
+import 'package:flexiscan101/Online-Sessions/Call.dart';
+import 'package:flexiscan101/Online-Sessions/index.dart';
+import 'package:flexiscan101/Online-Sessions/temp/main_screen.dart';
+import 'package:flexiscan101/animation_module/custom_components/animation_widgets.dart';
+import 'package:flexiscan101/screens/ai_screen.dart';
+import 'package:flexiscan101/screens/book_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'Network/cache_helper.dart';
@@ -47,13 +53,12 @@ final bool onboardingcompleted;
             themeMode:  AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
            // home: const OnBoardingScreen(),
             home:
-              PatientHome(searchController: SearchController())
-            //const BookScreen()
+            // const BookScreen()
             // BLEScreen()
             // OnlineSessionsIndex()
             // AIScreen()
-             //DoctorHome(searchController:SearchController() ,)
-            // Session_Screen()
+            // DoctorHome(searchController:searchController ,)
+            Session_Screen()
             // onboardingcompleted ? const AuthHome() : const OnBoardingScreen(),
           );
         },

@@ -43,7 +43,6 @@ class AnimationCubit extends Cubit<AnimationStates> {
   String currentState = "Idle";
   String currentGIF = "asset/images/Idle.gif";
 
-
   // Preload all GIFs
   void _preloadImages(BuildContext context) {
     // List of all image paths to preload
