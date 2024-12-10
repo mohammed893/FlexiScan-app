@@ -1,6 +1,9 @@
 // main.dart
 
 import 'package:flexiscan101/Auth/screens/auth_home.dart';
+import 'package:flexiscan101/Remote/BLE_COMM/controllers/cubit.dart';
+import 'package:flexiscan101/Remote/BLE_COMM/screens/Scan.dart';
+import 'package:flexiscan101/Remote/BLE_COMM/screens/test.dart';
 import 'package:flexiscan101/users/Doctor/doctor_home.dart';
 import 'package:flexiscan101/Remote/Network/dio_helper.dart';
 import 'package:flexiscan101/screens/On%20Boarding/on_boarding_screen.dart';
@@ -26,7 +29,7 @@ void main() async {
   CachHelper.putBool(key: 'onboarding', value: false); // just for testing 
   bool isDark = CachHelper.getData(key: 'isDark');
   bool onboarding = CachHelper.getData(key: 'onboarding' );
-  runApp(MyApp(isDark: isDark ,     
+  runApp(MyApp(isDark: false ,     
                 onboardingcompleted: onboarding,));
 }
 
@@ -43,6 +46,7 @@ final bool onboardingcompleted;
           create: (context) => AppCubit()..changeAppMode( currentModeFromPrefs: isDark ),
           
         ),
+        BlocProvider(create: (context) => BleCubit(),)
 
       ],
       child: BlocConsumer<AppCubit, AppStates>(
@@ -57,6 +61,8 @@ final bool onboardingcompleted;
             home:
             // const BookScreen()
             // BLEScreen()
+            // BLEScreen()
+            // ScanScreen()
             // OnlineSessionsIndex()
             // AIScreen()
             PatientHome()

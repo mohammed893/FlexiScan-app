@@ -121,7 +121,7 @@ class _StickManScreenState extends State<StickManScreen> {
                             value: animatedValue, // This will animate the progression
                             strokeWidth: 8,
                             backgroundColor: Colors.grey[500],
-                            valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                            valueColor: AlwaysStoppedAnimation<Color>(Color(0xffd7a859)),
                           );
                         },
                       );

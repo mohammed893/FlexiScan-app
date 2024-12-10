@@ -18,5 +18,12 @@ class FlexiRateUpdatedState extends FlexiStates{}
 
 class ChangeIndex extends FlexiStates{}
 
+class BLEDisconnectedState extends FlexiStates{}
+
+class BLEConnectedState extends FlexiStates{}
+
+
 class Screen2UpdatedState extends FlexiStates{}
+
+
 

@@ -1,4 +1,5 @@
 
+import 'package:flexiscan101/Remote/BLE_COMM/screens/Scan.dart';
 import 'package:flexiscan101/users/Patient/Cubit/states.dart';
 import 'package:flexiscan101/users/Patient/NavScreens/devices.dart';
 import 'package:flexiscan101/users/Patient/NavScreens/exercises.dart';
@@ -6,21 +7,31 @@ import 'package:flexiscan101/users/Patient/NavScreens/home_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+
+
 class FlexiCubit extends Cubit<FlexiStates>{
   FlexiCubit(): super (FlexiInitialState()){
     currentScreen = screens[currentIndex];
   }
   static FlexiCubit get(context) =>BlocProvider.of(context);
-  List<Widget> screens = [
-      PatientHomeScreen(),
+  static bool BLEConnected = false;
+  List<Widget> get screens {return [
+      const PatientHomeScreen(),
       const Exercises(),
-      const Devices(),
-    ];
-  late TextEditingController searchController;
+      BLEConnected? const Devices() : ScanScreen() ,
+    ];}
   int currentIndex = 0;
+
+  late TextEditingController searchController;
   bool isPassword = true;
   IconData suffix = Icons.visibility;
   late Widget currentScreen;
+  void updateBLEConnection(bool isConnected){
+    BLEConnected = isConnected;
+    emit(isConnected ? BLEConnectedState() : BLEDisconnectedState());
+  }
+
+
   void changePasswordVisibility(){
     isPassword =! isPassword;
     suffix = isPassword? Icons.visibility : Icons.visibility_off;
