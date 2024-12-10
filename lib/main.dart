@@ -58,8 +58,8 @@ final bool onboardingcompleted;
             // OnlineSessionsIndex()
             // AIScreen()
             // DoctorHome(searchController:searchController ,)
-            Session_Screen()
-            // onboardingcompleted ? const AuthHome() : const OnBoardingScreen(),
+            // Session_Screen()
+            onboardingcompleted ? const AuthHome() : const OnBoardingScreen(),
           );
         },
       ),
