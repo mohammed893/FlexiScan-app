@@ -1,5 +1,5 @@
-import 'package:flexiscan101/animation_module/cubit.dart';
-import 'package:flexiscan101/animation_module/states.dart';
+import 'package:flexiscan101/Custom%20Modules/animation_module/cubit.dart';
+import 'package:flexiscan101/Custom%20Modules/animation_module/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -4,8 +4,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Network/cache_helper.dart';
-import '../../Network/dio_helper.dart';
+import '../../Remote/Network/cache_helper.dart';
+import '../../Remote/Network/dio_helper.dart';
 import 'app_states.dart';
 
 

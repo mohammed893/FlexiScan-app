@@ -4,8 +4,8 @@ import 'package:flexiscan101/Auth/auth_cubit/states.dart';
 import 'package:flexiscan101/Auth/Models/login_model.dart';
 import 'package:flexiscan101/Auth/Models/signup_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Network/dio_helper.dart';
-import '../../Network/end_points.dart';
+import '../../Remote/Network/dio_helper.dart';
+import '../../Remote/Network/end_points.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() :super(AuthInitialState());

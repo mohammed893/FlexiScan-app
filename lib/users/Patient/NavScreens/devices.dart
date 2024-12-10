@@ -1,32 +1,26 @@
-// screens/book_screen.dart
 
-// ignore_for_file: prefer_const_literals_to_create_immutables
-
+import 'package:flexiscan101/users/Patient/Cubit/cubit.dart';
+import 'package:flexiscan101/users/Patient/Cubit/states.dart';
 import 'package:flexiscan101/Custom%20Modules/animation_module/custom_components/animation_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BookScreen extends StatelessWidget {
-  const BookScreen({super.key});
-
+class Devices extends StatelessWidget {
+  const Devices({super.key});
   @override
   Widget build(BuildContext context) {
-    double _sliderValue = 0;
-    return Scaffold(
-      appBar: AppBar(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          StickManController().setLevel(1);
-          StickManController().setProgression(0.5);
-        },
-      ),
-      body: Column(
+      double _sliderValue = 0;
+    return BlocConsumer<FlexiCubit,FlexiStates>(
+      listener: (context , state){},
+      builder: (context , state){
+        return Scaffold(
+          body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
             child: SizedBox(
               height: 300, // Set a fixed height
-              child: StickManScreen(),
+              child: StickManScreen(screenSize: 350,),
             ),
           ),
           SizedBox(height: 50,),
@@ -53,6 +47,8 @@ class BookScreen extends StatelessWidget {
 
         ],
       ),
+        );
+      },
     );
   }
 }
