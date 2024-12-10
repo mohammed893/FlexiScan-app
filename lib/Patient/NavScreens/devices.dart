@@ -11,7 +11,7 @@ class Devices extends StatelessWidget {
     return BlocConsumer<FlexiCubit,FlexiStates>(
       listener: (context , state){},
       builder: (context , state){
-        var flexi = FlexiCubit.get(context).devices ;
+        var flexi = FlexiCubit.get(context) ;
         return Scaffold(
           body: Text('hello'),
         );

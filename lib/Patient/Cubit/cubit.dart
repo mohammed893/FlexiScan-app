@@ -2,25 +2,25 @@
 import 'package:flexiscan101/Patient/Cubit/states.dart';
 import 'package:flexiscan101/Patient/NavScreens/devices.dart';
 import 'package:flexiscan101/Patient/NavScreens/exercises.dart';
-import 'package:flexiscan101/Patient/NavScreens/home.dart';
+import 'package:flexiscan101/Patient/NavScreens/home_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FlexiCubit extends Cubit<FlexiStates>{
   FlexiCubit(): super (FlexiInitialState()){
-    TextEditingController searchController = TextEditingController();
-    screens = [
-      PatientHome(searchController: searchController),
+    currentScreen = screens[currentIndex];
+  }
+  static FlexiCubit get(context) =>BlocProvider.of(context);
+  List<Widget> screens = [
+      PatientHomeScreen(),
       const Exercises(),
       const Devices(),
     ];
-
-  }
-  static FlexiCubit get(context) =>BlocProvider.of(context);
   late TextEditingController searchController;
-
+  int currentIndex = 0;
   bool isPassword = true;
   IconData suffix = Icons.visibility;
+  late Widget currentScreen;
   void changePasswordVisibility(){
     isPassword =! isPassword;
     suffix = isPassword? Icons.visibility : Icons.visibility_off;
@@ -68,17 +68,9 @@ class FlexiCubit extends Cubit<FlexiStates>{
   }
 
 
-
-  int currentIndex = 0;
-  List<Widget> screens = [];
-  List<Map> home = [];
-  List<Map> exercises = [];
-  List<Map> devices = [];
-  List<Map> screen = [];
-
-
   void changeIndex(int index){
     currentIndex = index;
+    currentScreen = screens[currentIndex];
     emit(ChangeIndex());
   }
 

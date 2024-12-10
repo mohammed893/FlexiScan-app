@@ -19,7 +19,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbar(
+      appBar: appbar(showAvatar: false,
         title: '',
         onPressed: () {
           submit();

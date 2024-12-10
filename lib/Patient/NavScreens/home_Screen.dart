@@ -2,45 +2,31 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flexiscan101/Components/custom/custom_app_bar.dart';
 import 'package:flexiscan101/Components/custom/custom_button.dart';
 import 'package:flexiscan101/Components/custom/custom_home_item.dart';
+import 'package:flexiscan101/Components/custom/custom_search_bar.dart';
 import 'package:flexiscan101/Patient/Cubit/cubit.dart';
 import 'package:flexiscan101/Patient/Cubit/states.dart';
 import 'package:flexiscan101/Patient/Models/recommendation_model.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
  TextEditingController searchController = TextEditingController();
 
-class PatientHome extends StatelessWidget {
-  const PatientHome({super.key,});
+class PatientHomeScreen extends StatelessWidget {
+  const PatientHomeScreen({super.key,});
 
   @override
   Widget build(BuildContext context) {
-    return  BlocProvider(
-      create: (BuildContext context)=>FlexiCubit(),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.white,
-        appBar: appbar(title: '',
-          menuOnPressed: (){},
-          leadingIcon: Icons.menu,
-          notiOnPressed: (){},
-          notiIcon: Icons.notifications_none,
-          backGroundColor: Colors.white,
-        ),
-        bottomNavigationBar: BlocBuilder<FlexiCubit , FlexiStates>(
-          builder: (context, state){
-            FlexiCubit flexi = FlexiCubit.get(context);
-            return navigationBar(flexi);
-          },
-        ),
-        body: BlocBuilder<FlexiCubit, FlexiStates>(
-          builder: (context, state) {
-            FlexiCubit flexi = FlexiCubit.get(context);
-            return flexi.screens[flexi.currentIndex];
-          },
-        ),
-
-      ),
+    return  Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        welcomeRow(),
+        Search(searchController: searchController),
+        Flexible(child: SingleChildScrollView(
+          dragStartBehavior: DragStartBehavior.start,
+          child: buildContainer(text: 'text', iconText: 'Schedule', icon:  Icons.schedule, context: context),
+        ))
+      ],
     );
   }
 

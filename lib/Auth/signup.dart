@@ -1,4 +1,5 @@
 
+import 'package:flexiscan101/Auth/auth_home.dart';
 import 'package:flexiscan101/Components/custom/custom_button.dart';
 import 'package:flexiscan101/Components/custom/custom_form_field.dart';
 import 'package:flexiscan101/Components/custom/custom_optional_button.dart';
@@ -59,7 +60,7 @@ class _SignupState extends State<Signup> {
                    if (state.signupModel.token!= null){
                      print("Token: ${state.signupModel.token}");
                      Navigator.pushAndRemoveUntil(context,
-                       MaterialPageRoute(builder: (context)=>const HomeScreen(),
+                       MaterialPageRoute(builder: (context)=>const AuthHome(),
                        ),
                            (Route<dynamic >route)=> false,
                      );
@@ -123,10 +124,10 @@ class _SignupState extends State<Signup> {
                                              dateOfBirth: dateController.text,
                                              phoneNumber: phoneController.text,
                                              type: userType,
-                                             gender: '',
-                                             age: '',
-                                             hospital: '',
-                                             nationalID: '',
+                                             gender: 'M',
+                                             age: 12,
+                                             hospital: 'hh',
+                                             nationalID: '123123123',
                                              verification: '',
                                              follow: false,
                                            );

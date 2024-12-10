@@ -2,13 +2,14 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flexiscan101/Components/custom/custom_app_bar.dart';
 import 'package:flexiscan101/Components/custom/custom_button.dart';
 import 'package:flexiscan101/Doctor/Models/Appointment_model.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../Components/custom/custom_home_item.dart';
 import '../Components/custom/custom_search_bar.dart';
+TextEditingController searchController = TextEditingController();
 
 class DoctorHome extends StatelessWidget {
-  final TextEditingController searchController;
-  DoctorHome({super.key , required this.searchController});
+  DoctorHome({super.key});
 
 
   @override
@@ -30,9 +31,14 @@ class DoctorHome extends StatelessWidget {
         children: [
           welcomeRow(),
           Search(searchController: searchController,),
-          buildContainer(text: "  Today'\s Appointment",
-            iconText: 'Schedule',
-            icon: Icons.schedule,
+          Flexible(
+            child: SingleChildScrollView(
+              dragStartBehavior: DragStartBehavior.start,
+              child: buildContainer(text: "  Today'\s Appointment",
+                iconText: 'Schedule',
+                icon: Icons.schedule,
+              ),
+            ),
           ),
         ],
       ),
@@ -192,7 +198,7 @@ class DoctorHome extends StatelessWidget {
           style:const TextStyle(
               fontSize: 20.0
           ),),
-        const SizedBox(height: 5,),
+        const SizedBox(height: 4,),
 
       ],
     );

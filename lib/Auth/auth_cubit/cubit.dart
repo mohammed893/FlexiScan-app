@@ -46,7 +46,7 @@ class AuthCubit extends Cubit<AuthStates> {
     required String hospital,
     required String verification,
     required String type,
-    required String age,
+    required int age,
     required String phoneNumber,
     required String nationalID,
     required bool follow
@@ -66,7 +66,7 @@ class AuthCubit extends Cubit<AuthStates> {
           'Age': age,
           'PhoneNumber': phoneNumber,
           'nationalID': nationalID,
-          'follow_up' : follow,
+          // 'follow_up' : follow,
         },
       );
 
@@ -74,6 +74,7 @@ class AuthCubit extends Cubit<AuthStates> {
       emit(AuthSignupSuccessState(signupModel!));
     } on DioException catch (e) {
       String errorMessage = e.message ?? "unexpected error";
+      print(errorMessage);
       emit(AuthSignupErrorState(errorMessage));
     } catch (error) {
       emit(AuthSignupErrorState('unexpected error'));

@@ -11,7 +11,7 @@ class Exercises extends StatelessWidget {
     return BlocConsumer<FlexiCubit,FlexiStates>(
       listener: (context , state){},
       builder: (context , state){
-        var flexi = FlexiCubit.get(context).exercises ;
+        var flexi = FlexiCubit.get(context) ;
         return Scaffold(
           body: Text('hello'),
         );

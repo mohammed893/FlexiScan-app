@@ -1,11 +1,13 @@
 // main.dart
 
+import 'package:flexiscan101/Auth/auth_home.dart';
 import 'package:flexiscan101/Doctor/doctor_home.dart';
 import 'package:flexiscan101/Network/dio_helper.dart';
 import 'package:flexiscan101/On%20Boarding/on_boarding_screen.dart';
 import 'package:flexiscan101/Online-Sessions/Call.dart';
 import 'package:flexiscan101/Online-Sessions/index.dart';
 import 'package:flexiscan101/Online-Sessions/temp/main_screen.dart';
+import 'package:flexiscan101/Patient/NavScreens/home.dart';
 import 'package:flexiscan101/animation_module/custom_components/animation_widgets.dart';
 import 'package:flexiscan101/screens/ai_screen.dart';
 import 'package:flexiscan101/screens/book_screen.dart';
@@ -57,9 +59,10 @@ final bool onboardingcompleted;
             // BLEScreen()
             // OnlineSessionsIndex()
             // AIScreen()
-            // DoctorHome(searchController:searchController ,)
+            PatientHome()
+            // const PatientHome()
             // Session_Screen()
-            onboardingcompleted ? const AuthHome() : const OnBoardingScreen(),
+            // onboardingcompleted ? const AuthHome() : const OnBoardingScreen(),
           );
         },
       ),
